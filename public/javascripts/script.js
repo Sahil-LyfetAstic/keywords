@@ -77,12 +77,15 @@ function onDrop(event) {
     const id = event.dataTransfer.getData("text");
     let second = document.getElementById(id + "b").value.replace(/\"/g, "");
     let parrentId = event.target.parentNode.id;
+    let inputId = parrentId.slice(0, -1);
     let first = event.target.parentElement.value.replace(/\"/g, "");
     let newKeyword = first + " " + second;
     console.log(newKeyword);
 
     let html =
-    '<input style="display: none;" type="text" name="cat" id="'+parrentId+'i" value="' +
+      '<input style="display: none;" type="text" name="cat" id="' +
+      inputId +
+      'i" value="' +
       newKeyword +
       '" >' +
       '<div class="accordion-item" id="cat">' +
@@ -105,7 +108,7 @@ function onDrop(event) {
       '<i onclick="addAf(this)" id="bb"' +
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       ' ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      '<i class="fas fa-minus-circle" style="padding: 10px;"></i>' +
+      '<i class="fas fa-minus-circle" style="padding: 10px;"  onclick="delKey(this)"></i>' +
       "<br>" +
       '<i class="fas fa-pen" style="padding: 10px;"' +
       '  onclick="editKey(this)"></i>';
@@ -122,12 +125,15 @@ function onDrop(event) {
     const id = event.dataTransfer.getData("text");
     let second = document.getElementById(id + "b").value.replace(/\"/g, "");
     let parrentId = event.target.parentNode.id;
+    let inputId = parrentId.slice(0, -1);
     let first = event.target.parentElement.value.replace(/\"/g, "");
     let newKeyword = second + " " + first;
     console.log(newKeyword);
 
     let html =
-      '<input style="display: none;" type="text" name="cat" id="'+parrentId+'i" value="' +
+      '<input style="display: none;" type="text" name="cat" id="' +
+      inputId +
+      'i" value="' +
       newKeyword +
       '" >' +
       '<div class="accordion-item" id="keyword">' +
@@ -150,7 +156,7 @@ function onDrop(event) {
       '<i onclick="addAf(this)" id="bb"' +
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       ' ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      '<i class="fas fa-minus-circle" style="padding: 10px;"></i>' +
+      '<i class="fas fa-minus-circle" style="padding: 10px;"  onclick="delKey(this)"></i>' +
       "<br>" +
       '<i class="fas fa-pen" style="padding: 10px;"' +
       '  onclick="editKey(this)"></i>';
@@ -163,13 +169,15 @@ function onDrop(event) {
 
     dropzone.appendChild(draggableElement);
     event.dataTransfer.clearData();
-  } else {
+  } else if(event.target.className === 'list list2'){
     const id = event.dataTransfer.getData("text");
     const draggableElement = document.getElementById(id);
     const dropzone = event.target;
     dropzone.appendChild(draggableElement);
     event.dataTransfer.clearData();
     console.log(test);
+  }else {
+    event.preventDefault()
   }
 }
 
@@ -187,7 +195,7 @@ $("#modal-save").click((e) => {
   let data = document.getElementById("modal-input").value;
   console.log(data);
   let id = document.getElementById("modal-input").name;
-  console.log(id)
+  console.log(id);
   let inputId = id.slice(0, -1);
 
   // let id2 = id.slice(0, -1)
@@ -202,45 +210,47 @@ $("#modal-save").click((e) => {
     '<i onclick="addAf(this)" id="bb"' +
     'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
     ' ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-    '<i class="fas fa-minus-circle" style="padding: 10px;"></i>' +
+    '<i class="fas fa-minus-circle" style="padding: 10px;"  onclick="delKey(this)"></i>' +
     "<br>" +
     '<i class="fas fa-pen" style="padding: 10px;"' +
     '  onclick="editKey(this)"></i>';
 
-  let t = (document.getElementById(id).innerHTML = html);
-  document.getElementById(id).value = data
-  document.getElementById(inputId+'i').value = data  
-  console.log(t);
-  // console.log(html)
+  document.getElementById(id).innerHTML = html;
+  document.getElementById(id).value = data;
+  document.getElementById(inputId + "i").value = data;
   $(".modal").modal("hide");
 });
 
+$("#modal-close").click(() => $(".modal").modal("hide"));
 
-$('#modal-close').click(()=> $('.modal').modal('hide'))
-
-
-
-
-function delKey(data){
+function delKey(data) {
+  console.log(data)
+  console.log('button clicked')
   let id = data.parentElement.id.slice(0, -1);
-  console.log(id)
-   var el = document.getElementById(id);
-  el.parentNode.removeChild(el)
-  
+  console.log(id);
+  var el = document.getElementById(id);
+  el.parentNode.removeChild(el);
 }
 
+$("#relation-form").submit((e) => {
+  console.log("button clicked");
+  e.preventDefault();
 
-$('#relation-form').submit((e)=>{
-  console.log('button clicked')
-  e.preventDefault()
-  
-  let data =  $('#relation-form').serializeArray()
- 
-  console.log(data)
+  let data = $("#relation-form").serializeArray();
+
+  console.log(data);
 
   $.ajax({
-    url:"test",
-    type:'post',
-    data:data
-  })
-})
+    url: "submit-keyword",
+    type: "post",
+    data: data,
+    success: (response) => {
+      console.log(response);
+      if(response === true){
+        $("#afteruploadmsg").html("added succes").css("color", "green").show();
+        $("#afteruploadmsg").delay(1000).hide(0);
+        $("#relation-form").load(location.href + " #relation-form");
+      }
+    },
+  });
+});

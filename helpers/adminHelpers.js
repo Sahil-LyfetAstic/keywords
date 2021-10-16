@@ -77,4 +77,32 @@ module.exports = {
         });
     });
   },
+  insertKeyword: (keyData) => {
+    return new Promise(async (resolve, reject) => {
+      console.log(keyData)
+      await db
+        .get()
+        .collection(collection.KEYWORD_COLLECTION)
+        .insertMany(keyData)
+        .then((response) => {
+          response ? resolve(true) : reject(false)
+        });
+    });
+  },
+  getEditedKeyword:()=>{
+    console.log('keyword')
+    return new Promise(async(resolve,reject)=>{
+      await db.get().collection(collection.KEYWORD_COLLECTION).find().toArray().then((keyword)=>{
+        if(keyword) resolve(keyword)
+        else console.log('error')
+      })
+    })
+  },
+  insertSingleKey:(keyword)=>{
+    return new Promise(async(resolve,reject)=>{
+      await db.get().collection(collection.KEYWORD_COLLECTION).insertOne(keyword).then((res)=>{
+        res ? resolve(true) : reject(false)
+      })
+    })
+  }
 };

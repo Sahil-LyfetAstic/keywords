@@ -320,12 +320,8 @@
                                 </div>
                                 <div class="col-md-4">
                                     <div class="form-group">
-                                        <h5>select service</h5>
-                                        <select class="form-select" id="ser-key">
 
-                                            <option value="">test1</option>
-
-                                        </select>
+                                        <h5 id="afteruploadmsg" style="display:none;"></h5>
                                     </div>
                                 </div>
                             </div>
@@ -342,7 +338,8 @@
 
                                         <div class="accordion" name="tst" id="d{{this._id}}" class="example-draggable"
                                             draggable="true" ondragstart="onDragStart(event);">
-                                            <input style="display: none;" type="text" name="keyword" id="d{this._id}}i" value="{{this.keyword_name}}">
+                                            <input style="display: none;" type="text" name="cat" id="d{{this._id}}i"
+                                                value="{{this.keyword_name}}">
                                             <div class="accordion-item" id="tesssst">
                                                 <h2 class="accordion-header" id="headingTwo"> <button
                                                         value="{{this.keyword_name}}" id="d{{this._id}}b"
@@ -354,7 +351,8 @@
                                                         {{this.keyword_name}}<i id="bb" class="fas fa-plus-circle add-a"
                                                             style="padding: 10px;" ondragover="onDragOver(event);"
                                                             ondrop="onDrop(event);"></i>
-                                                        <i class="fas fa-minus-circle" style="padding: 10px;"  onclick="delKey(this)"></i>
+                                                        <i class="fas fa-minus-circle" style="padding: 10px;"
+                                                            onclick="delKey(this)"></i>
                                                         <br>
                                                         <i class="fas fa-pen" style="padding: 10px;"
                                                             onclick="editKey(this)"></i>
@@ -387,12 +385,6 @@
                                     </form>
 
                                 </div>
-
-
-
-
-
-
                             </div>
                             <div class="modal" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
@@ -407,7 +399,8 @@
                                             <input type="text" name="modal-input" id="modal-input" value="">
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" id="modal-save">Save changes</button>
+                                            <button type="button" class="btn btn-primary" id="modal-save">Save
+                                                changes</button>
                                             <button type="button" class="btn btn-secondary" id="modal-close"
                                                 data-dismiss="modal">Close</button>
                                         </div>

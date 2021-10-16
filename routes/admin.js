@@ -19,11 +19,10 @@ router.get("/", (req, res) => {
   res.render("admin/login", { user: true });
 });
 
-router.get('/login',(req,res)=>{
-  console.log('helloo')
-  res.render('admin/login',{user:true})
-})
-
+router.get("/login", (req, res) => {
+  console.log("helloo");
+  res.render("admin/login", { user: true });
+});
 
 router.post("/login", (req, res) => {
   adminHelper.doLogin(req.body).then((response) => {
@@ -39,24 +38,20 @@ router.post("/login", (req, res) => {
 });
 
 router.get("/home", verifyLogin, (req, res) => {
-  adminHelper.getAprovedColl().then((service)=>{
+  adminHelper.getAprovedColl().then((service) => {
     let coll = "Real_Estate";
+
     adminHelper.getCsv(coll).then((keywords) => {
-      res.render("admin/home", { admin: true,service,keywords });
-
-     
+      res.render("admin/home", { admin: true, service, keywords });
     });
-
-  })
-
+  });
 });
 
 router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
-  console.log(req.body);
-  console.log(req.file);
+  let ext = req.file.originalname.split(".").pop();
   let keywordId = req.body.coll;
   let keywordArray = [];
-  if (req.file.mimetype === "text/csv") {
+  if (ext === "csv") {
     csv({
       output: "line",
       trim: true,
@@ -87,7 +82,7 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
           });
         }
       });
-  } else if (req.file.mimetype === "application/wps-office.docx") {
+  } else if (ext === "docx") {
     console.log(req.file);
     console.log(req.file.originalname);
 
@@ -110,7 +105,7 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
           });
       });
     });
-  } else if (req.file.mimetype === "text/plain") {
+  } else if (ext === "txt") {
     console.log("hellooo");
     fs.readFile(req.file.path, function (err, data) {
       if (err) throw err;
@@ -142,11 +137,29 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
   }
 });
 
-
-router.post('/test',(req,res)=>{
-  console.log(req.body)
-})
-
-
+router.post("/submit-keyword", (req, res) => {
+  console.log(req.body);
+  let keywords = [];
+  let data = req.body.cat;
+  console.log(typeof data);
+  if (typeof data === "string") {
+    let data = {
+      keyword: req.body.cat,
+    };
+    adminHelper.insertSingleKey(data).then((response) => {
+      response ? res.send(true) : res.send(false);
+    });
+  } else {
+    data.forEach((element) => {
+      let keywordData = {
+        keyword: element,
+      };
+      keywords.push(keywordData);
+    });
+    adminHelper.insertKeyword(keywords).then((response) => {
+      response ? res.send(true) : res.send(false);
+    });
+  }
+});
 
 module.exports = router;
