@@ -360,11 +360,20 @@ function onDrop(event) {
     const id = event.dataTransfer.getData("text");
     const draggableElement = document.getElementById(id).cloneNode(true);
 
+      //to change id of element
     document.getElementById(draggableElement.id).id =
-      draggableElement.id + count;
-    count += 1;
+    draggableElement.id + count;
+    document.getElementById('e'+draggableElement.id).id = 'e'+draggableElement.id + count
+    document.getElementById('d'+draggableElement.id).id = 'd'+draggableElement.id + count
     dropzone.appendChild(draggableElement);
+
+
+     ///changing style of edit and delete tag
+
+    document.getElementById('e'+draggableElement.id).style.display = 'inline'
+    document.getElementById('d'+draggableElement.id).style.display = 'inline'
     event.dataTransfer.clearData();
+    count += 1;
   } else if (dropzone.className === "fas fa-plus-circle add-a") {
     const id = event.dataTransfer.getData("text");
     const parrentId = dropzone.parentElement.parentElement.id;
@@ -394,8 +403,8 @@ function onDrop(event) {
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '  <i class="fas fa-minus-circle" style="padding: 10px;"' +
-      'onclick="delKey(this)" id="' +
+      '  <i class="fas fa-trash" style="padding: 10px;"' +
+      'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
       "</button>";
@@ -432,8 +441,8 @@ function onDrop(event) {
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-minus-circle" style="padding: 10px;"' +
-      'onclick="delKey(this)" id="' +
+      '<i class="fas fa-trash" style="padding: 10px;"' +
+      'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
       "</button>";
@@ -473,8 +482,8 @@ function editKeyword(e, data) {
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-minus-circle" style="padding: 10px;"' +
-      'onclick="delKey(this)" id="' +
+      '<i class="fas fa-trash" style="padding: 10px;"' +
+      'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
       "</button>";
@@ -489,9 +498,10 @@ function editKeyword(e, data) {
 
 $("#modal-close").click(() => $(".modal").modal("hide"));
 
-function delKey(data) {
+function delKey(event,data) {
+  event.preventDefault()
   console.log("button clicked");
-  let id = data.parentElement.id.slice(0, -1);
+  let id = data.parentElement.parentElement.id
   var el = document.getElementById(id);
   el.parentNode.removeChild(el);
 }

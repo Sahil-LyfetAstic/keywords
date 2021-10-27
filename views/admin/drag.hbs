@@ -326,9 +326,9 @@
                                 </div>
                             </div>
 
+
                             <div class="row lists" id="tst">
                                 <div class="col-md-4">
-
                                     <div class="list" id="dis">
 
                                         {{#each keywords}}
@@ -344,21 +344,13 @@
                                                     class="fas fa-plus-circle add-a" style="padding: 10px;"
                                                     ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
 
-                                                <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>
-                                                <i class="fas fa-minus-circle" style="padding: 10px;"
-                                                    onclick="delKey(this)" id="{{this._id}}d"></i>
-
-
+                                                <i class="fas fa-pen-square" style="padding: 10px; display:none" id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
+                                                <i class="fas fa-trash" style="padding: 10px; display:none"
+                                                    onclick="delKey(event,this)" id="d{{this._id}}-"></i>
                                             </button>
-
                                         </div>
 
-
-
-
                                         <br>
-
-
                                         {{/each}}
 
 
@@ -366,7 +358,7 @@
                                 </div>
 
 
-                               
+                
                                 <div class="col-md-4">
                                     <form action="relation-form" id="relation-form">
                                         <div class="list list2" id="list2" ondragover="onDragOver(event);"
