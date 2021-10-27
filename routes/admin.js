@@ -162,4 +162,16 @@ router.post("/submit-keyword", (req, res) => {
   }
 });
 
+
+
+router.get('/drag',(req,res)=>{
+  adminHelper.getAprovedColl().then((service) => {
+    let coll = "Real_Estate";
+
+    adminHelper.getCsv(coll).then((keywords) => {
+      res.render("admin/drag", { admin: true, service, keywords });
+    });
+  });
+})
+
 module.exports = router;

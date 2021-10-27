@@ -66,6 +66,7 @@ module.exports = {
     });
   },
   getCsv: (coll) => {
+    console.log(coll)
     return new Promise(async (resolve, reject) => {
       await db
         .get()

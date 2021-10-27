@@ -333,35 +333,29 @@
 
                                         {{#each keywords}}
 
+                                        <div id="{{this._id}}-" class="example-draggable" draggable="true"
+                                            ondragstart="onDragStart(event);">
+                                            <input type="text" name="cat" value="{{this.keyword_name}}" id="{{this._id}}i"
+                                                style="display: none;">
+                                            <button value="{{this.keyword_name}}" style="all: unset;" id="{{this.id}}b">
+                                                <i id="add-b" class="fas fa-plus-circle add-b"
+                                                    style="padding: 10px;"></i>
+                                                {{this.keyword_name}}<i id="{{this._id}}-a"
+                                                    class="fas fa-plus-circle add-a" style="padding: 10px;"
+                                                    ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
+
+                                                <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>
+                                                <i class="fas fa-minus-circle" style="padding: 10px;"
+                                                    onclick="delKey(this)" id="{{this._id}}d"></i>
 
 
-
-                                        <div class="accordion" name="tst" id="d{{this._id}}-" class="example-draggable"
-                                            draggable="true" ondragstart="onDragStart(event);" onclick="counter()">
-                                            <input style="display: none;" type="text" name="cat" id="d{{this._id}}i"
-                                                value="{{this.keyword_name}}">
-                                            <div class="accordion-item" id="tesssst">
-                                                <h2 class="accordion-header" id="headingTwo"> <button
-                                                        value="{{this.keyword_name}}" id="d{{this._id}}b"
-                                                        class="accordion-button collapsed" type="button" 
-                                                        data-bs-toggle="collapse" data-bs-target="#d{{this._id}}t"
-                                                        aria-expanded="false" aria-controls="d{{this._id}}t">
-                                                        <i id="add-b" class="fas fa-plus-circle add-b"
-                                                            style="padding: 10px;"></i>
-                                                        {{this.keyword_name}}<i id="d{{this._id}}-a" class="fas fa-plus-circle add-a"
-                                                            style="padding: 10px;" ondragover="onDragOver(event);"
-                                                            ondrop="onDrop(event);"></i>
-                                                        <i class="fas fa-minus-circle"  id="d{{this._id}}del" style="padding: 10px; display:none;"
-                                                            onclick="delKey(this)"></i>
-                                                        <br>
-                                                       
-                                                    </button><input  type="text" value="{{this.keyword_name}}"
-                                                        style="display: none !important;"></h2>
-
-
-                                            </div>
+                                            </button>
 
                                         </div>
+
+
+
+
                                         <br>
 
 
@@ -371,7 +365,8 @@
                                     </div>
                                 </div>
 
-{{!-- 
+
+                               
                                 <div class="col-md-4">
                                     <form action="relation-form" id="relation-form">
                                         <div class="list list2" id="list2" ondragover="onDragOver(event);"
@@ -383,7 +378,7 @@
 
                                     </form>
 
-                                </div> --}}
+                                </div>
                             </div>
                             <div class="modal" tabindex="-1" role="dialog">
                                 <div class="modal-dialog" role="document">
