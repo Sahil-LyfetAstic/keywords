@@ -6,7 +6,7 @@ const csv = require("csvtojson");
 const multer = require("multer");
 const upload = multer({ dest: "upload/" });
 var docxParser = require("docx-parser");
-const collection = require('../config/collection')
+const collection = require("../config/collection");
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
     next();
@@ -169,18 +169,31 @@ router.get("/drag", (req, res) => {
 
     adminHelper.getCsv(coll).then((keywords) => {
       adminHelper.getEditedKeyword().then((editKeyword) => {
-        res.render("admin/drag", { admin: true, service, keywords, editKeyword });
+        res.render("admin/drag", {
+          admin: true,
+          service,
+          keywords,
+          editKeyword,
+        });
       });
     });
   });
 });
 
+router.post("/flush-keyword", (req, res) => {
+  console.log(req.body);
+  adminHelper
+    .flush(req.body.keyword, collection.KEYWORD_COLLECTION)
+    .then((status) => {
+      console.log(status);
+    });
+});
 
-router.post('/flush-keyword',(req,res)=>{
-  console.log(req.body)
-  adminHelper.flush(req.body.keyword,collection.KEYWORD_COLLECTION).then((status)=>{
-    console.log(status)
-  })
-})
-
+router.post("/key-exist", (req, res) => {
+  adminHelper
+    .findKey(req.body.keyword, collection.KEYWORD_COLLECTION)
+    .then((response) => {
+      res.send(response);
+    });
+});
 module.exports = router;

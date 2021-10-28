@@ -334,7 +334,7 @@
                                         {{#each keywords}}
 
                                         <div id="{{this._id}}-" class="example-draggable" draggable="true"
-                                            ondragstart="onDragStart(event);">
+                                            ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
                                             <input type="text" name="cat" value="{{this.keyword_name}}" id="{{this._id}}i"
                                                 style="display: none;">
                                             <button value="{{this.keyword_name}}" style="all: unset;" id="{{this.id}}b">

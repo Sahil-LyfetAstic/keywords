@@ -356,127 +356,221 @@ let count = 0;
 
 function onDrop(event) {
   const dropzone = event.target;
+  console.log(dropzone)
   if (dropzone.className === "list list2") {
     const id = event.dataTransfer.getData("text");
-    const draggableElement = document.getElementById(id)
-    if(draggableElement.className === 'example-draggable edited'){
-
-     
-
+    const draggableElement = document.getElementById(id);
+    if (draggableElement.className === "example-draggable edited") {
       dropzone.appendChild(draggableElement);
-  
-  
-       ///changing style of edit and delete tag
-  
-      document.getElementById('e'+draggableElement.id).style.display = 'inline'
-      document.getElementById('d'+draggableElement.id).style.display = 'inline'
+
+      ///changing style of edit and delete tag
+
+      document.getElementById("e" + draggableElement.id).style.display =
+        "inline";
+      document.getElementById("d" + draggableElement.id).style.display =
+        "inline";
       event.dataTransfer.clearData();
-     
 
-     ///remove from db
-      let editedKeyword = document.getElementById(draggableElement.id).getAttribute('data-value');
-      flushEdited(editedKeyword)
-  
+      ///remove from db
+      let editedKeyword = document
+        .getElementById(draggableElement.id)
+        .getAttribute("data-value");
+      flushEdited(editedKeyword);
+    } else {
+      //cloning
+      const id = event.dataTransfer.getData("text");
+      const draggableElement = document.getElementById(id).cloneNode(true);
 
-    }else{
+      //sorting
+      let editedKeyword = document
+        .getElementById(draggableElement.id)
+        .getAttribute("data-value");
+      let isKey = sorting(editedKeyword);
+      if (isKey === true) {
+        //changing background color
+        draggableElement.style.backgroundColor = "yellow";
 
-     //cloning
-     const id = event.dataTransfer.getData("text");
-     const draggableElement = document.getElementById(id).cloneNode(true)
-  
+        document.getElementById(draggableElement.id).id =
+          draggableElement.id + count;
+        document.getElementById("e" + draggableElement.id).id =
+          "e" + draggableElement.id + count;
+        document.getElementById("d" + draggableElement.id).id =
+          "d" + draggableElement.id + count;
+        dropzone.appendChild(draggableElement);
+
+        ///changing style of edit and delete tag
+
+        document.getElementById("e" + draggableElement.id).style.display =
+          "inline";
+        document.getElementById("d" + draggableElement.id).style.display =
+          "inline";
+        event.dataTransfer.clearData();
+        count += 1;
+      } else {
         //to change id of element
-      document.getElementById(draggableElement.id).id =
-      draggableElement.id + count;
-      document.getElementById('e'+draggableElement.id).id = 'e'+draggableElement.id + count
-      document.getElementById('d'+draggableElement.id).id = 'd'+draggableElement.id + count
-      dropzone.appendChild(draggableElement);
-  
-  
-       ///changing style of edit and delete tag
-  
-      document.getElementById('e'+draggableElement.id).style.display = 'inline'
-      document.getElementById('d'+draggableElement.id).style.display = 'inline'
-      event.dataTransfer.clearData();
-      count += 1;
-  
+        document.getElementById(draggableElement.id).id =
+          draggableElement.id + count;
+        document.getElementById("e" + draggableElement.id).id =
+          "e" + draggableElement.id + count;
+        document.getElementById("d" + draggableElement.id).id =
+          "d" + draggableElement.id + count;
+        dropzone.appendChild(draggableElement);
 
+        ///changing style of edit and delete tag
+
+        document.getElementById("e" + draggableElement.id).style.display =
+          "inline";
+        document.getElementById("d" + draggableElement.id).style.display =
+          "inline";
+        event.dataTransfer.clearData();
+        count += 1;
+      }
     }
-   
-
   } else if (dropzone.className === "fas fa-plus-circle add-a") {
     const id = event.dataTransfer.getData("text");
     const parrentId = dropzone.parentElement.parentElement.id;
     const firstValue = dropzone.parentElement.value;
     let secondId = id.split("-")[0].replace(/-/g, "");
     const secondValue = document.getElementById(secondId + "i").value;
-    const keyword = firstValue + " " + secondValue;
+    const keyword = firstValue + " " + secondValue.trim()  
 
-    console.log("parre", parrentId);
-    let html =
-      '<input type="text" value="' +
-      keyword +
-      '" name="cat" id="' +
-      parrentId +
-      'i" style="display: none;">' +
-      '<button value="' +
-      keyword +
-      '" style="all: unset;" id="' +
-      parrentId +
-      'b">' +
-      '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
-      "" +
-      keyword +
-      '<i id="' +
-      parrentId +
-      '-a" ' +
-      'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
-      'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '  <i class="fas fa-trash" style="padding: 10px;"' +
-      'onclick="delKey(event,this)" id="' +
-      parrentId +
-      'd"></i>' +
-      "</button>";
+    //keyword exist
+    
+    let isKey = sorting(keyword);
+    if(isKey === true){
+      
+      let html =
+        '<input type="text" value="' +
+        keyword +
+        '" name="cat" id="' +
+        parrentId +
+        'i" style="display: none;">' +
+        '<button value="' +
+        keyword +
+        '" style="all: unset;" id="' +
+        parrentId +
+        'b">' +
+        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        "" +
+        keyword +
+        '<i id="' +
+        parrentId +
+        '-a" ' +
+        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
+        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        '  <i class="fas fa-trash" style="padding: 10px;"' +
+        'onclick="delKey(event,this)" id="' +
+        parrentId +
+        'd"></i>' +
+        "</button>";
+      document.getElementById(parrentId).style.backgroundColor = "yellow";
+      document.getElementById(parrentId).innerHTML = html;
+    }else {
+     
+      let html =
+        '<input type="text" value="' +
+        keyword +
+        '" name="cat" id="' +
+        parrentId +
+        'i" style="display: none;">' +
+        '<button value="' +
+        keyword +
+        '" style="all: unset;" id="' +
+        parrentId +
+        'b">' +
+        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        "" +
+        keyword +
+        '<i id="' +
+        parrentId +
+        '-a" ' +
+        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
+        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        '  <i class="fas fa-trash" style="padding: 10px;"' +
+        'onclick="delKey(event,this)" id="' +
+        parrentId +
+        'd"></i>' +
+        "</button>";
+      
+        document.getElementById(parrentId).style.backgroundColor = "#4AAE9B";
+      document.getElementById(parrentId).innerHTML = html;
+    }
 
-    document.getElementById(parrentId).innerHTML = html;
-
-    //   let secondId = id.split("-")[0].replace(/-/g, "");
-    // let secondValue = document.getElementById(secondId + "b").value;
+   
   } else if (dropzone.className === "fas fa-plus-circle add-b") {
-    const id = event.dataTransfer.getData("text");
-    const parrentId = dropzone.parentElement.parentElement.id;
-    const firstValue = dropzone.parentElement.value;
-    let secondId = id.split("-")[0].replace(/-/g, "");
-    const secondValue = document.getElementById(secondId + "i").value;
-    const keyword = secondValue + " " + firstValue;
-    console.log(parrentId);
-    let html =
-      '<input type="text" name="cat" value="' +
-      keyword +
-      '" id="' +
-      parrentId +
-      'i" style="display: none;">' +
-      '<button value="' +
-      keyword +
-      '" style="all: unset;" id="' +
-      parrentId +
-      'b">' +
-      '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
-      "" +
-      keyword +
-      '<i id="' +
-      parrentId +
-      '-a" ' +
-      'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
-      'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-trash" style="padding: 10px;"' +
-      'onclick="delKey(event,this)" id="' +
-      parrentId +
-      'd"></i>' +
-      "</button>";
 
-    document.getElementById(parrentId).innerHTML = html;
+     const id = event.dataTransfer.getData("text");
+      const parrentId = dropzone.parentElement.parentElement.id;
+      const firstValue = dropzone.parentElement.value;
+      let secondId = id.split("-")[0].replace(/-/g, "");
+      const secondValue = document.getElementById(secondId + "i").value;
+      const keyword = secondValue + " " + firstValue.trim();
+
+
+    let isKey = sorting(keyword);
+    if(isKey === true){      
+      let html =
+        '<input type="text" name="cat" value="' +
+        keyword +
+        '" id="' +
+        parrentId +
+        'i" style="display: none;">' +
+        '<button value="' +
+        keyword +
+        '" style="all: unset;" id="' +
+        parrentId +
+        'b">' +
+        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        "" +
+        keyword +
+        '<i id="' +
+        parrentId +
+        '-a" ' +
+        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
+        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-trash" style="padding: 10px;"' +
+        'onclick="delKey(event,this)" id="' +
+        parrentId +
+        'd"></i>' +
+        "</button>";
+  
+      document.getElementById(parrentId).style.backgroundColor = "yellow";
+      document.getElementById(parrentId).innerHTML = html;
+    }else{
+     
+      let html =
+        '<input type="text" name="cat" value="' +
+        keyword +
+        '" id="' +
+        parrentId +
+        'i" style="display: none;">' +
+        '<button value="' +
+        keyword +
+        '" style="all: unset;" id="' +
+        parrentId +
+        'b">' +
+        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        "" +
+        keyword +
+        '<i id="' +
+        parrentId +
+        '-a" ' +
+        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
+        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-trash" style="padding: 10px;"' +
+        'onclick="delKey(event,this)" id="' +
+        parrentId +
+        'd"></i>' +
+        "</button>";
+  
+        document.getElementById(parrentId).style.backgroundColor = "#4AAE9B";
+      document.getElementById(parrentId).innerHTML = html;
+    }
+   
   }
 }
 
@@ -489,9 +583,12 @@ function editKeyword(e, data) {
   document.getElementById("modal-input").value = data.parentElement.value;
 
   $("#modal-save").click((e) => {
-    let editedData = document.getElementById("modal-input").value;
+    let editedData = document.getElementById("modal-input").value.trim()  
+    let isKey = sorting(editedData);
+    if(isKey === true){
 
-    let html =
+
+      let html =
       '<input type="text" name="cat" value="' +
       editedData +
       '" id="' +
@@ -517,20 +614,54 @@ function editKeyword(e, data) {
       'd"></i>' +
       "</button>";
 
+      document.getElementById(parrentId).style.backgroundColor = "yellow";
     document.getElementById(parrentId).innerHTML = html;
     $(".modal").modal("hide");
+    }else{
 
-    return false;
+
+      let html =
+      '<input type="text" name="cat" value="' +
+      editedData +
+      '" id="' +
+      parrentId +
+      'i" style="display: none;">' +
+      '<button value="' +
+      editedData +
+      '" style="all: unset;" id="' +
+      parrentId +
+      'b">' +
+      '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+      "" +
+      editedData +
+      '<i id="' +
+      parrentId +
+      '-a" ' +
+      'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+      'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
+      ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+      '<i class="fas fa-trash" style="padding: 10px;"' +
+      'onclick="delKey(event,this)" id="' +
+      parrentId +
+      'd"></i>' +
+      "</button>";
+
+      document.getElementById(parrentId).style.backgroundColor = "#4AAE9B";
+    document.getElementById(parrentId).innerHTML = html;
+    $(".modal").modal("hide");
+      
+    }
+    
   });
   return false;
 }
 
 $("#modal-close").click(() => $(".modal").modal("hide"));
 
-function delKey(event,data) {
-  event.preventDefault()
+function delKey(event, data) {
+  event.preventDefault();
   console.log("button clicked");
-  let id = data.parentElement.parentElement.id
+  let id = data.parentElement.parentElement.id;
   var el = document.getElementById(id);
   el.parentNode.removeChild(el);
 }
@@ -541,10 +672,9 @@ $("#relation-form").submit((e) => {
 
   let data = $("#relation-form").serializeArray();
 
-  if(data.length === 0){
-    alert('no data to submit')
-  }else{
-
+  if (data.length === 0) {
+    alert("no data to submit");
+  } else {
     $.ajax({
       url: "submit-keyword",
       type: "post",
@@ -552,27 +682,41 @@ $("#relation-form").submit((e) => {
       success: (response) => {
         console.log(response);
         if (response === true) {
-         
-          $("#afteruploadmsg").html("added succes").css("color", "green").show();
+          $("#afteruploadmsg")
+            .html("added succes")
+            .css("color", "green")
+            .show();
           $("#afteruploadmsg").delay(1000).hide(0);
           $("#form-div").load(location.href + " #form-div");
-        
         }
       },
     });
   }
-
-
-
 });
 
-
-function flushEdited(keyword){
+function flushEdited(keyword) {
   $.ajax({
-    url:'flush-keyword',
-    type:'post',
-    data:{
-      keyword
-    }
-  })
+    url: "flush-keyword",
+    type: "post",
+    data: {
+      keyword,
+    },
+  });
+}
+
+function sorting(keyword) {
+  let key;
+  $.ajax({
+    url: "key-exist",
+    type: "post",
+    async: false,
+    data: {
+      keyword,
+    },
+    success: (response) => {
+      key = response;
+    },
+  });
+
+  return key;
 }

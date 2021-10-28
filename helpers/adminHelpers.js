@@ -66,7 +66,7 @@ module.exports = {
     });
   },
   getCsv: (coll) => {
-    console.log(coll)
+    console.log(coll);
     return new Promise(async (resolve, reject) => {
       await db
         .get()
@@ -80,37 +80,65 @@ module.exports = {
   },
   insertKeyword: (keyData) => {
     return new Promise(async (resolve, reject) => {
-      console.log(keyData)
+      console.log(keyData);
       await db
         .get()
         .collection(collection.KEYWORD_COLLECTION)
         .insertMany(keyData)
         .then((response) => {
-          response ? resolve(true) : reject(false)
+          response ? resolve(true) : reject(false);
         });
     });
   },
-  getEditedKeyword:()=>{
-    console.log('keyword')
-    return new Promise(async(resolve,reject)=>{
-      await db.get().collection(collection.KEYWORD_COLLECTION).find().toArray().then((keyword)=>{
-        if(keyword) resolve(keyword)
-        else console.log('error')
-      })
-    })
+  getEditedKeyword: () => {
+    console.log("keyword");
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection.KEYWORD_COLLECTION)
+        .find()
+        .toArray()
+        .then((keyword) => {
+          if (keyword) resolve(keyword);
+          else console.log("error");
+        });
+    });
   },
-  insertSingleKey:(keyword)=>{
-    return new Promise(async(resolve,reject)=>{
-      await db.get().collection(collection.KEYWORD_COLLECTION).insertOne(keyword).then((res)=>{
-        res ? resolve(true) : reject(false)
-      })
-    })
+  insertSingleKey: (keyword) => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection.KEYWORD_COLLECTION)
+        .insertOne(keyword)
+        .then((res) => {
+          res ? resolve(true) : reject(false);
+        });
+    });
   },
-  flush:(keyword,collection)=>{
-    return new Promise(async(resolve,reject)=>{
-      await db.get().collection(collection).deleteOne({keyword : keyword}).then((status)=>{
-        status ? resolve(status) : reject(status)
-      })
-    })
-  }
+  flush: (keyword, collection) => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection)
+        .deleteOne({ keyword: keyword })
+        .then((status) => {
+          status ? resolve(status) : reject(status);
+        });
+    });
+  },
+  findKey: (keyword, coll) => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(coll)
+        .findOne({ keyword: keyword })
+        .then((key) => {
+          if (key) resolve(true);
+          else resolve(false);
+        })
+        .catch((err) => {
+          throw err;
+        });
+    });
+  },
 };
