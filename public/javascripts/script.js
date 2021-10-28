@@ -358,13 +358,51 @@ function onDrop(event) {
   const dropzone = event.target;
   if (dropzone.className === "list list2") {
     const id = event.dataTransfer.getData("text");
-    const draggableElement = document.getElementById(id).cloneNode(true);
+    const draggableElement = document.getElementById(id)
+    if(draggableElement.className === 'example-draggable edited'){
 
-    document.getElementById(draggableElement.id).id =
+     
+
+      dropzone.appendChild(draggableElement);
+  
+  
+       ///changing style of edit and delete tag
+  
+      document.getElementById('e'+draggableElement.id).style.display = 'inline'
+      document.getElementById('d'+draggableElement.id).style.display = 'inline'
+      event.dataTransfer.clearData();
+     
+
+     ///remove from db
+      let editedKeyword = document.getElementById(draggableElement.id).getAttribute('data-value');
+      flushEdited(editedKeyword)
+  
+
+    }else{
+
+     //cloning
+     const id = event.dataTransfer.getData("text");
+     const draggableElement = document.getElementById(id).cloneNode(true)
+  
+        //to change id of element
+      document.getElementById(draggableElement.id).id =
       draggableElement.id + count;
-    count += 1;
-    dropzone.appendChild(draggableElement);
-    event.dataTransfer.clearData();
+      document.getElementById('e'+draggableElement.id).id = 'e'+draggableElement.id + count
+      document.getElementById('d'+draggableElement.id).id = 'd'+draggableElement.id + count
+      dropzone.appendChild(draggableElement);
+  
+  
+       ///changing style of edit and delete tag
+  
+      document.getElementById('e'+draggableElement.id).style.display = 'inline'
+      document.getElementById('d'+draggableElement.id).style.display = 'inline'
+      event.dataTransfer.clearData();
+      count += 1;
+  
+
+    }
+   
+
   } else if (dropzone.className === "fas fa-plus-circle add-a") {
     const id = event.dataTransfer.getData("text");
     const parrentId = dropzone.parentElement.parentElement.id;
@@ -394,8 +432,8 @@ function onDrop(event) {
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '  <i class="fas fa-minus-circle" style="padding: 10px;"' +
-      'onclick="delKey(this)" id="' +
+      '  <i class="fas fa-trash" style="padding: 10px;"' +
+      'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
       "</button>";
@@ -432,8 +470,8 @@ function onDrop(event) {
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-minus-circle" style="padding: 10px;"' +
-      'onclick="delKey(this)" id="' +
+      '<i class="fas fa-trash" style="padding: 10px;"' +
+      'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
       "</button>";
@@ -473,8 +511,8 @@ function editKeyword(e, data) {
       'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-minus-circle" style="padding: 10px;"' +
-      'onclick="delKey(this)" id="' +
+      '<i class="fas fa-trash" style="padding: 10px;"' +
+      'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
       "</button>";
@@ -489,9 +527,10 @@ function editKeyword(e, data) {
 
 $("#modal-close").click(() => $(".modal").modal("hide"));
 
-function delKey(data) {
+function delKey(event,data) {
+  event.preventDefault()
   console.log("button clicked");
-  let id = data.parentElement.id.slice(0, -1);
+  let id = data.parentElement.parentElement.id
   var el = document.getElementById(id);
   el.parentNode.removeChild(el);
 }
@@ -502,20 +541,38 @@ $("#relation-form").submit((e) => {
 
   let data = $("#relation-form").serializeArray();
 
-  console.log(data);
+  if(data.length === 0){
+    alert('no data to submit')
+  }else{
 
-  $.ajax({
-    url: "submit-keyword",
-    type: "post",
-    data: data,
-    success: (response) => {
-      console.log(response);
-      if (response === true) {
-        console.log(location);
-        $("#afteruploadmsg").html("added succes").css("color", "green").show();
-        $("#afteruploadmsg").delay(1000).hide(0);
-        $("#relation-form").load(location.href + " #relation-form");
-      }
-    },
-  });
+    $.ajax({
+      url: "submit-keyword",
+      type: "post",
+      data: data,
+      success: (response) => {
+        console.log(response);
+        if (response === true) {
+         
+          $("#afteruploadmsg").html("added succes").css("color", "green").show();
+          $("#afteruploadmsg").delay(1000).hide(0);
+          $("#form-div").load(location.href + " #form-div");
+        
+        }
+      },
+    });
+  }
+
+
+
 });
+
+
+function flushEdited(keyword){
+  $.ajax({
+    url:'flush-keyword',
+    type:'post',
+    data:{
+      keyword
+    }
+  })
+}
