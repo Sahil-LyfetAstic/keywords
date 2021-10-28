@@ -358,22 +358,51 @@ function onDrop(event) {
   const dropzone = event.target;
   if (dropzone.className === "list list2") {
     const id = event.dataTransfer.getData("text");
-    const draggableElement = document.getElementById(id).cloneNode(true);
+    const draggableElement = document.getElementById(id)
+    if(draggableElement.className === 'example-draggable edited'){
 
-      //to change id of element
-    document.getElementById(draggableElement.id).id =
-    draggableElement.id + count;
-    document.getElementById('e'+draggableElement.id).id = 'e'+draggableElement.id + count
-    document.getElementById('d'+draggableElement.id).id = 'd'+draggableElement.id + count
-    dropzone.appendChild(draggableElement);
+     
 
+      dropzone.appendChild(draggableElement);
+  
+  
+       ///changing style of edit and delete tag
+  
+      document.getElementById('e'+draggableElement.id).style.display = 'inline'
+      document.getElementById('d'+draggableElement.id).style.display = 'inline'
+      event.dataTransfer.clearData();
+     
 
-     ///changing style of edit and delete tag
+     ///remove from db
+      let editedKeyword = document.getElementById(draggableElement.id).getAttribute('data-value');
+      flushEdited(editedKeyword)
+  
 
-    document.getElementById('e'+draggableElement.id).style.display = 'inline'
-    document.getElementById('d'+draggableElement.id).style.display = 'inline'
-    event.dataTransfer.clearData();
-    count += 1;
+    }else{
+
+     //cloning
+     const id = event.dataTransfer.getData("text");
+     const draggableElement = document.getElementById(id).cloneNode(true)
+  
+        //to change id of element
+      document.getElementById(draggableElement.id).id =
+      draggableElement.id + count;
+      document.getElementById('e'+draggableElement.id).id = 'e'+draggableElement.id + count
+      document.getElementById('d'+draggableElement.id).id = 'd'+draggableElement.id + count
+      dropzone.appendChild(draggableElement);
+  
+  
+       ///changing style of edit and delete tag
+  
+      document.getElementById('e'+draggableElement.id).style.display = 'inline'
+      document.getElementById('d'+draggableElement.id).style.display = 'inline'
+      event.dataTransfer.clearData();
+      count += 1;
+  
+
+    }
+   
+
   } else if (dropzone.className === "fas fa-plus-circle add-a") {
     const id = event.dataTransfer.getData("text");
     const parrentId = dropzone.parentElement.parentElement.id;
@@ -512,20 +541,38 @@ $("#relation-form").submit((e) => {
 
   let data = $("#relation-form").serializeArray();
 
-  console.log(data);
+  if(data.length === 0){
+    alert('no data to submit')
+  }else{
 
-  $.ajax({
-    url: "submit-keyword",
-    type: "post",
-    data: data,
-    success: (response) => {
-      console.log(response);
-      if (response === true) {
-        console.log(location);
-        $("#afteruploadmsg").html("added succes").css("color", "green").show();
-        $("#afteruploadmsg").delay(1000).hide(0);
-        $("#relation-form").load(location.href + " #relation-form");
-      }
-    },
-  });
+    $.ajax({
+      url: "submit-keyword",
+      type: "post",
+      data: data,
+      success: (response) => {
+        console.log(response);
+        if (response === true) {
+         
+          $("#afteruploadmsg").html("added succes").css("color", "green").show();
+          $("#afteruploadmsg").delay(1000).hide(0);
+          $("#form-div").load(location.href + " #form-div");
+        
+        }
+      },
+    });
+  }
+
+
+
 });
+
+
+function flushEdited(keyword){
+  $.ajax({
+    url:'flush-keyword',
+    type:'post',
+    data:{
+      keyword
+    }
+  })
+}

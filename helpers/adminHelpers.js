@@ -105,5 +105,12 @@ module.exports = {
         res ? resolve(true) : reject(false)
       })
     })
+  },
+  flush:(keyword,collection)=>{
+    return new Promise(async(resolve,reject)=>{
+      await db.get().collection(collection).deleteOne({keyword : keyword}).then((status)=>{
+        status ? resolve(status) : reject(status)
+      })
+    })
   }
 };

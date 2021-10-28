@@ -6,6 +6,7 @@ const csv = require("csvtojson");
 const multer = require("multer");
 const upload = multer({ dest: "upload/" });
 var docxParser = require("docx-parser");
+const collection = require('../config/collection')
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
     next();
@@ -162,16 +163,24 @@ router.post("/submit-keyword", (req, res) => {
   }
 });
 
-
-
-router.get('/drag',(req,res)=>{
+router.get("/drag", (req, res) => {
   adminHelper.getAprovedColl().then((service) => {
     let coll = "Real_Estate";
 
     adminHelper.getCsv(coll).then((keywords) => {
-      res.render("admin/drag", { admin: true, service, keywords });
+      adminHelper.getEditedKeyword().then((editKeyword) => {
+        res.render("admin/drag", { admin: true, service, keywords, editKeyword });
+      });
     });
   });
+});
+
+
+router.post('/flush-keyword',(req,res)=>{
+  console.log(req.body)
+  adminHelper.flush(req.body.keyword,collection.KEYWORD_COLLECTION).then((status)=>{
+    console.log(status)
+  })
 })
 
 module.exports = router;
