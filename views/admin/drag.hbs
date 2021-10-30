@@ -360,7 +360,7 @@
 
                 
                                 <div class="col-md-4" id="rel-form">
-                                    <form action="relation-form" id="relation-form">
+                                    <form  id="relation-form">
                                         <div class="list list2" id="list2" ondragover="onDragOver(event);"
                                             ondrop="onDrop(event);">
 
@@ -373,18 +373,18 @@
                                 </div>
 
                                     <div class="col-md-4">
-                                   <div class="list" id="dis">
+                                   <div class="list" id="edited">
 
                                         {{#each editKeyword}}
 
                                         <div id="{{this._id}}-" class="example-draggable edited" draggable="true"
-                                            ondragstart="onDragStart(event);" data-value="{{this.keyword}}">
-                                            <input type="text" name="cat" value="{{this.keyword}}" id="{{this._id}}i"
+                                            ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
+                                            <input type="text" name="cat" value="{{this.keyword_name}}" id="{{this._id}}i"
                                                 style="display: none;">
-                                            <button value="{{this.keyword}}" style="all: unset;" id="{{this.id}}b">
+                                            <button value="{{this.keyword_name}}" style="all: unset;" id="{{this.id}}b">
                                                 <i id="add-b" class="fas fa-plus-circle add-b"
                                                     style="padding: 10px;"></i>
-                                                {{this.keyword}}<i id="{{this._id}}-a"
+                                                {{this.keyword_name}}<i id="{{this._id}}-a"
                                                     class="fas fa-plus-circle add-a" style="padding: 10px;"
                                                     ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
 

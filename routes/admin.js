@@ -75,10 +75,8 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
             adminHelper
               .addCsv(key.keyword_collection, keywordArray)
               .then((status) => {
-                if (status === true) {
-                  fs.unlinkSync(req.file.path);
-                  res.send(true);
-                }
+                fs.unlinkSync(req.file.path);
+                res.send(status);
               });
           });
         }
@@ -99,10 +97,8 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
         adminHelper
           .addCsv(key.keyword_collection, keywordArray)
           .then((status) => {
-            if (status === true) {
-              fs.unlinkSync(req.file.path);
-              res.send(true);
-            }
+            fs.unlinkSync(req.file.path);
+            res.send(status);
           });
       });
     });
@@ -123,10 +119,8 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
         adminHelper
           .addCsv(key.keyword_collection, keywordArray)
           .then((status) => {
-            if (status === true) {
-              fs.unlinkSync(req.file.path);
-              res.send(true);
-            }
+            fs.unlinkSync(req.file.path);
+            res.send(status);
           });
       });
     });
@@ -139,13 +133,13 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
 });
 
 router.post("/submit-keyword", (req, res) => {
-  console.log(req.body);
+ if(req.body.cat){
   let keywords = [];
   let data = req.body.cat;
   console.log(typeof data);
   if (typeof data === "string") {
     let data = {
-      keyword: req.body.cat,
+      keyword_name: req.body.cat,
     };
     adminHelper.insertSingleKey(data).then((response) => {
       response ? res.send(true) : res.send(false);
@@ -153,7 +147,7 @@ router.post("/submit-keyword", (req, res) => {
   } else {
     data.forEach((element) => {
       let keywordData = {
-        keyword: element,
+        keyword_name: element,
       };
       keywords.push(keywordData);
     });
@@ -161,7 +155,13 @@ router.post("/submit-keyword", (req, res) => {
       response ? res.send(true) : res.send(false);
     });
   }
+ }else{
+   res.send(true)
+ }
+
 });
+
+
 
 router.get("/drag", (req, res) => {
   adminHelper.getAprovedColl().then((service) => {

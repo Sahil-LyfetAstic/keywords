@@ -35,6 +35,7 @@ $("#add-keyword-form").submit((e) => {
     processData: false,
     contentType: false,
     success: (response) => {
+      console.log(response)
       if (response === true) {
         console.log(response);
         $("#uploadmsg").html("added succes").css("color", "green").show();
@@ -389,7 +390,11 @@ function onDrop(event) {
       if (isKey === true) {
         //changing background color
         draggableElement.style.backgroundColor = "yellow";
+        draggableElement.childNodes[1].name = 'duplicate' //change name for sorting
 
+
+
+       console.log(document.getElementById(draggableElement.id))
         document.getElementById(draggableElement.id).id =
           draggableElement.id + count;
         document.getElementById("e" + draggableElement.id).id =
@@ -442,7 +447,7 @@ function onDrop(event) {
       let html =
         '<input type="text" value="' +
         keyword +
-        '" name="cat" id="' +
+        '" name="dupicate" id="' +
         parrentId +
         'i" style="display: none;">' +
         '<button value="' +
@@ -512,7 +517,7 @@ function onDrop(event) {
     let isKey = sorting(keyword);
     if(isKey === true){      
       let html =
-        '<input type="text" name="cat" value="' +
+        '<input type="text" name="duplicate" value="' +
         keyword +
         '" id="' +
         parrentId +
@@ -589,7 +594,7 @@ function editKeyword(e, data) {
 
 
       let html =
-      '<input type="text" name="cat" value="' +
+      '<input type="text" name="duplicate" value="' +
       editedData +
       '" id="' +
       parrentId +
@@ -653,7 +658,7 @@ function editKeyword(e, data) {
     }
     
   });
-  return false;
+
 }
 
 $("#modal-close").click(() => $(".modal").modal("hide"));
@@ -687,11 +692,13 @@ $("#relation-form").submit((e) => {
             .css("color", "green")
             .show();
           $("#afteruploadmsg").delay(1000).hide(0);
-          $("#form-div").load(location.href + " #form-div");
+          $( "#list2" ).empty()
+          $("#edited").load(location.href + " #edited");
         }
       },
     });
   }
+  return false
 });
 
 function flushEdited(keyword) {
