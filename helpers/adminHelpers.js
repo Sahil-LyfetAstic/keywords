@@ -1,6 +1,7 @@
 const collection = require("../config/collection");
 const db = require("../config/connection");
 const objId = require("mongodb").ObjectId;
+const sortHelper = require("./sorting");
 
 module.exports = {
   doLogin: (userData) => {
@@ -40,14 +41,22 @@ module.exports = {
     });
   },
   addCsv: (coll, csv) => {
+    let response = {};
     return new Promise(async (resolve, reject) => {
-      await db
-        .get()
-        .collection(coll)
-        .insertMany(csv)
-        .then((data) => {
-          if (data) resolve(true);
-          else resolve(false);
+      sortHelper
+        .arrSorting(csv, collection.REALESATE_COLLECTION)
+        .then(async (sortedCsv) => {
+          if (!sortedCsv) resolve(true);
+          else {
+            await db
+              .get()
+              .collection(coll)
+              .insertMany(sortedCsv)
+              .then((data) => {
+                if (data) resolve(true);
+                else resolve(false);
+              });
+          }
         });
     });
   },
@@ -80,18 +89,21 @@ module.exports = {
   },
   insertKeyword: (keyData) => {
     return new Promise(async (resolve, reject) => {
-      console.log(keyData);
+      let result = keyData.filter(
+        (key, index, array) =>
+          array.findIndex((obj) => obj.keyword_name == key.keyword_name) ==
+          index
+      );
       await db
         .get()
         .collection(collection.KEYWORD_COLLECTION)
-        .insertMany(keyData)
+        .insertMany(result)
         .then((response) => {
           response ? resolve(true) : reject(false);
         });
     });
   },
   getEditedKeyword: () => {
-    console.log("keyword");
     return new Promise(async (resolve, reject) => {
       await db
         .get()
@@ -106,13 +118,14 @@ module.exports = {
   },
   insertSingleKey: (keyword) => {
     return new Promise(async (resolve, reject) => {
-      await db
+        await db
         .get()
         .collection(collection.KEYWORD_COLLECTION)
         .insertOne(keyword)
         .then((res) => {
           res ? resolve(true) : reject(false);
         });
+      
     });
   },
   flush: (keyword, collection) => {
@@ -120,7 +133,7 @@ module.exports = {
       await db
         .get()
         .collection(collection)
-        .deleteOne({ keyword: keyword })
+        .deleteOne({ keyword_name: keyword })
         .then((status) => {
           status ? resolve(status) : reject(status);
         });
@@ -131,7 +144,7 @@ module.exports = {
       await db
         .get()
         .collection(coll)
-        .findOne({ keyword: keyword })
+        .findOne({ keyword_name: keyword })
         .then((key) => {
           if (key) resolve(true);
           else resolve(false);
