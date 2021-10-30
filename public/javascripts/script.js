@@ -356,6 +356,7 @@ let count = 0;
 
 function onDrop(event) {
   const dropzone = event.target;
+  event.target.style.backgroundColor = "#ededed";
   console.log(dropzone)
   if (dropzone.className === "list list2") {
     const id = event.dataTransfer.getData("text");
@@ -388,7 +389,7 @@ function onDrop(event) {
       let isKey = sorting(editedKeyword);
       if (isKey === true) {
         //changing background color
-        draggableElement.style.backgroundColor = "yellow";
+        draggableElement.style.backgroundColor = "#f79a71";
 
         document.getElementById(draggableElement.id).id =
           draggableElement.id + count;
@@ -426,7 +427,7 @@ function onDrop(event) {
         count += 1;
       }
     }
-  } else if (dropzone.className === "fas fa-plus-circle add-a") {
+  } else if (dropzone.className === "fas fa-download add-a") {
     const id = event.dataTransfer.getData("text");
     const parrentId = dropzone.parentElement.parentElement.id;
     const firstValue = dropzone.parentElement.value;
@@ -450,21 +451,21 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        ' <div style="float:right!important; top:0px; right:0px; margin-left:20%;"> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 30px; font-size:17px;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i>' +
+        'd"></i></div>' +
         "</button>";
-      document.getElementById(parrentId).style.backgroundColor = "yellow";
+      document.getElementById(parrentId).style.backgroundColor = "#f79a71";
       document.getElementById(parrentId).innerHTML = html;
     }else {
      
@@ -479,27 +480,27 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        '<div style="float:right!important; right:0px; top:0px; margin-left:20%;"><i class="fas fa-pen-square" style="padding: 13px 30px 13px 30px; font-size:17px;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i>' +
+        'd"></i></div>' +
         "</button>";
       
-        document.getElementById(parrentId).style.backgroundColor = "#4AAE9B";
+        document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
 
    
-  } else if (dropzone.className === "fas fa-plus-circle add-b") {
+  } else if (dropzone.className === "fas fa-download add-b") {
 
      const id = event.dataTransfer.getData("text");
       const parrentId = dropzone.parentElement.parentElement.id;
@@ -522,22 +523,22 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        '<div style="float:right!important;top:0px; right:0px; "><i class="fas fa-pen-square" style="padding: 13px 30px 13px 30px; font-size:17px;" onclick="editKeyword(event,this)"></i>' +
         '<i class="fas fa-trash" style="padding: 10px;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i>' +
+        'd"></i></div>' +
         "</button>";
   
-      document.getElementById(parrentId).style.backgroundColor = "yellow";
+      document.getElementById(parrentId).style.backgroundColor = "#f79a71";
       document.getElementById(parrentId).innerHTML = html;
     }else{
      
@@ -552,22 +553,22 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+        '<div style="float:right!important; right:0px; top:0px;"><i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
         '<i class="fas fa-trash" style="padding: 10px;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i>' +
+        'd"></i></div>' +
         "</button>";
   
-        document.getElementById(parrentId).style.backgroundColor = "#4AAE9B";
+        document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
    
@@ -599,22 +600,22 @@ function editKeyword(e, data) {
       '" style="all: unset;" id="' +
       parrentId +
       'b">' +
-      '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+      '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
       "" +
       editedData +
       '<i id="' +
       parrentId +
       '-a" ' +
-      'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+      'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+      '<div style="float:right!important; top:0; right:0; "> <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
-      'd"></i>' +
+      'd"></i></div>' +
       "</button>";
 
-      document.getElementById(parrentId).style.backgroundColor = "yellow";
+      document.getElementById(parrentId).style.backgroundColor = "#f79a71";
     document.getElementById(parrentId).innerHTML = html;
     $(".modal").modal("hide");
     }else{
@@ -631,22 +632,22 @@ function editKeyword(e, data) {
       '" style="all: unset;" id="' +
       parrentId +
       'b">' +
-      '<i id="add-b" class="fas fa-plus-circle add-b" style="padding: 10px;"></i>' +
+      '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
       "" +
       editedData +
       '<i id="' +
       parrentId +
       '-a" ' +
-      'class="fas fa-plus-circle add-a" style="padding: 10px;"' +
+      'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
+      '<div style="float:right!important; top : 0; right: 0;"> <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
-      'd"></i>' +
+      'd"></i></div>' +
       "</button>";
 
-      document.getElementById(parrentId).style.backgroundColor = "#4AAE9B";
+      document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
     document.getElementById(parrentId).innerHTML = html;
     $(".modal").modal("hide");
       
