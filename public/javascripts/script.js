@@ -390,7 +390,7 @@ function onDrop(event) {
       let isKey = sorting(editedKeyword);
       if (isKey === true) {
         //changing background color
-        draggableElement.style.backgroundColor = "yellow";
+        draggableElement.style.backgroundColor = "#fda38b";
         draggableElement.childNodes[1].name = 'duplicate' //change name for sorting
 
 
@@ -464,8 +464,8 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        ' <div style="float:right!important; top:0px; right:0px; margin-left:20%;"> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 30px; font-size:17px;" onclick="editKeyword(event,this)"></i>' +
-        '  <i class="fas fa-trash" style="padding: 10px;"' +
+        ' <div style="float:right!important; top:0px; right:0px; left:10px;"> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
+        '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
         'd"></i></div>' +
@@ -493,8 +493,8 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<div style="float:right!important; right:0px; top:0px; margin-left:20%;"><i class="fas fa-pen-square" style="padding: 13px 30px 13px 30px; font-size:17px;" onclick="editKeyword(event,this)"></i>' +
-        '  <i class="fas fa-trash" style="padding: 10px;"' +
+        '<div style="float:right!important; right:0px; top:0px; margin-left:10px;"><i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
         'd"></i></div>' +
@@ -536,8 +536,8 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<div style="float:right!important;top:0px; right:0px; "><i class="fas fa-pen-square" style="padding: 13px 30px 13px 30px; font-size:17px;" onclick="editKeyword(event,this)"></i>' +
-        '<i class="fas fa-trash" style="padding: 10px;"' +
+        '<div style="float:right!important;top:0px; right:0px; left:10px; "><i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
         'd"></i></div>' +
@@ -566,8 +566,8 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<div style="float:right!important; right:0px; top:0px;"><i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-        '<i class="fas fa-trash" style="padding: 10px;"' +
+        '<div style="float:right!important; right:0px; top:0px;left:10px;"><i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
         'd"></i></div>' +
@@ -613,8 +613,8 @@ function editKeyword(e, data) {
       '-a" ' +
       'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      '<div style="float:right!important; top:0; right:0; "> <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-trash" style="padding: 10px;"' +
+      '<div style="float:right!important; top:0; right:0;left:10px "> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i></div>' +
@@ -645,8 +645,8 @@ function editKeyword(e, data) {
       '-a" ' +
       'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      '<div style="float:right!important; top : 0; right: 0;"> <i class="fas fa-pen-square" style="padding: 10px;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-trash" style="padding: 10px;"' +
+      '<div style="float:right!important; top : 0; right: 0; left:10px;"> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i></div>' +

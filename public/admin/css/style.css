@@ -19754,6 +19754,29 @@ html.ie11 .bs-searchbox .form-control {
   /* overflow-x: scroll; */
 }
 
+
+.list list2{
+  /* display: flex;
+  flex-flow: column;
+  flex: 1;
+  width: 100%;
+  min-width: 0px;
+  max-width: 1600px;
+  height: 100%; */
+  /* min-height: 150px; */
+  /* margin-top: 0 15px; */
+  /* padding: 8px; */
+  /* transition: all 0.2s linear;
+  border: 1px solid #efefef; */
+  height: 500px!important;
+  margin-top: 1%;
+}
+
+
+.slimScrollDiv{
+  height: 500px!important;
+}
+
 .lists .list {
   display: flex;
   flex-flow: column;
@@ -19767,7 +19790,7 @@ html.ie11 .bs-searchbox .form-control {
   /* padding: 8px; */
   transition: all 0.2s linear;
   border: 1px solid #efefef;
-  height: 900px;
+  height: 500px!important;
 }
 .lists .list .list-item{
   /* background-color: #eeedea; */
@@ -19808,8 +19831,8 @@ html.ie11 .bs-searchbox .form-control {
   margin-bottom: 0px;
   margin-top: 0px;
   padding: 0px;
-  border-bottom: 1px solid #efefef;
-  margin-bottom: 1%;
+  border-bottom: 1px solid #dddddd99;
+  margin-bottom: -1%;
 }
 
 .example-dropzone {
@@ -19882,6 +19905,12 @@ p{
   font-size: 10px;
 
 }
+.fa-download{
+  cursor: pointer;
+}
+.fa-pen-square{
+  cursor:pointer;
+}
 /* .fa-plus-circle:before {
   content: "\f055";
   color: #fff;
@@ -19915,14 +19944,19 @@ p{
   border-radius:50%;
   color:#000;
   font-size:12px; */
+  cursor: pointer;
 }
 
+fas fa-trash{
+  cursor: pointer;
+}
 .fa-trash {
   content: "\f1f8";
   /* background-color:#e9e7a7; 
   border-radius:50%;
   color:#000;
   font-size:12px; */
+  cursor: pointer;
 }
 
 .edit{
