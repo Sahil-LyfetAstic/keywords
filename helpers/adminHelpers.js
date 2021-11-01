@@ -118,14 +118,13 @@ module.exports = {
   },
   insertSingleKey: (keyword) => {
     return new Promise(async (resolve, reject) => {
-        await db
+      await db
         .get()
         .collection(collection.KEYWORD_COLLECTION)
         .insertOne(keyword)
         .then((res) => {
           res ? resolve(true) : reject(false);
         });
-      
     });
   },
   flush: (keyword, collection) => {
@@ -151,6 +150,51 @@ module.exports = {
         })
         .catch((err) => {
           throw err;
+        });
+    });
+  },
+  updateUser: (userId) => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection.USER_COLLECTION)
+        .updateOne(
+          { username: userId },
+          {
+            $set: { userLogged: true },
+          }
+        )
+        .then((status) => {
+          resolve(status);
+        });
+    });
+  },
+  findUserLoggedIn: () => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection.USER_COLLECTION)
+        .findOne({ userLogged: true })
+        .then((user) => {
+          resolve(user);
+        });
+    });
+  },
+  logoutUser: (userId) => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collection.USER_COLLECTION)
+        .updateOne(
+          { username: userId },
+          {
+            $unset: {
+              userLogged: true,
+            },
+          }
+        )
+        .then((response) => {
+          resolve(response)
         });
     });
   },

@@ -20,6 +20,8 @@ $("#admin-login").submit((e) => {
           alert("incorrect password");
         } else if (response.login === true) {
           window.location.href = "home";
+        }else if(response.oneUserActive === true){
+          alert("one user is working")
         }
       },
     });
@@ -727,3 +729,5 @@ function sorting(keyword) {
 
   return key;
 }
+
+

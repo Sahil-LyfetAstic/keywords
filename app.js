@@ -44,9 +44,11 @@ app.use(
     httpOnly: false,
     resave: true,
     saveUninitialized: true,
-    cookie: { maxAge: 60000000 },
+    
   })
 );
+
+
 
 app.use('/', adminRouter);
 

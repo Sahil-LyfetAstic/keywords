@@ -9,29 +9,56 @@ var docxParser = require("docx-parser");
 const collection = require("../config/collection");
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
-    next();
-  } else {
+    next()
+  }  
+   else {
     res.redirect("/login");
   }
 };
 
+const loginAccess = (req, res, next) => {
+  adminHelper.findUserLoggedIn().then((user) => {
+    let response = {};
+    if (!user) {
+      next();
+    } else {
+      response.oneUserActive = true;
+      res.send(response);
+    }
+  });
+};
+
 /* GET home page. */
-router.get("/", (req, res) => {
-  res.render("admin/login", { user: true });
+router.get("/", verifyLogin, (req, res) => {
+  if(req.session.loggedIn){
+    res.redirect('/home')
+  }else{
+    res.render("admin/login", { user: true });
+  }
 });
 
 router.get("/login", (req, res) => {
-  console.log("helloo");
-  res.render("admin/login", { user: true });
+  if(req.session.loggedIn){
+    res.redirect('/home')
+  }else{
+    res.render("admin/login", { user: true });
+  }
 });
 
-router.post("/login", (req, res) => {
+router.post("/login", loginAccess, (req, res) => {
   adminHelper.doLogin(req.body).then((response) => {
     if (response.login === true) {
-      req.session.loggedIn = true;
-      req.session.user = req.body;
-      console.log(req.session.user);
-      res.send(response);
+      adminHelper.updateUser(req.body.username).then((status) => {
+        if (status) {
+          req.session.loggedIn = true;
+          req.session.user = req.body;
+          req.session.cookie.maxAge = 365 * 24 * 60 * 60 * 1000;
+          console.log(req.session.user);
+          res.send(response);
+        } else {
+          console.log("something wrong");
+        }
+      });
     } else {
       res.send(response);
     }
@@ -133,35 +160,32 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
 });
 
 router.post("/submit-keyword", (req, res) => {
- if(req.body.cat){
-  let keywords = [];
-  let data = req.body.cat;
-  console.log(typeof data);
-  if (typeof data === "string") {
-    let data = {
-      keyword_name: req.body.cat,
-    };
-    adminHelper.insertSingleKey(data).then((response) => {
-      response ? res.send(true) : res.send(false);
-    });
-  } else {
-    data.forEach((element) => {
-      let keywordData = {
-        keyword_name: element,
+  if (req.body.cat) {
+    let keywords = [];
+    let data = req.body.cat;
+    console.log(typeof data);
+    if (typeof data === "string") {
+      let data = {
+        keyword_name: req.body.cat,
       };
-      keywords.push(keywordData);
-    });
-    adminHelper.insertKeyword(keywords).then((response) => {
-      response ? res.send(true) : res.send(false);
-    });
+      adminHelper.insertSingleKey(data).then((response) => {
+        response ? res.send(true) : res.send(false);
+      });
+    } else {
+      data.forEach((element) => {
+        let keywordData = {
+          keyword_name: element,
+        };
+        keywords.push(keywordData);
+      });
+      adminHelper.insertKeyword(keywords).then((response) => {
+        response ? res.send(true) : res.send(false);
+      });
+    }
+  } else {
+    res.send(true);
   }
- }else{
-   res.send(true)
- }
-
 });
-
-
 
 router.get("/drag", (req, res) => {
   adminHelper.getAprovedColl().then((service) => {
@@ -195,5 +219,16 @@ router.post("/key-exist", (req, res) => {
     .then((response) => {
       res.send(response);
     });
+});
+
+router.get("/logout", verifyLogin, (req, res) => {
+  adminHelper.logoutUser(req.session.user.username).then((response) => {
+    if (response) {
+      req.session.destroy();
+      res.redirect("/login");
+    } else {
+      console.log("something wrong");
+    }
+  });
 });
 module.exports = router;
