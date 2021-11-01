@@ -466,11 +466,11 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        ' <div style="float:right!important; top:0px; right:0px; left:10px;"> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i></div>' +
+        'd"></i>' +
         "</button>";
       document.getElementById(parrentId).style.backgroundColor = "#f79a71";
       document.getElementById(parrentId).innerHTML = html;
@@ -495,11 +495,11 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<div style="float:right!important; right:0px; top:0px; margin-left:10px;"><i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i></div>' +
+        'd"></i>' +
         "</button>";
       
         document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
@@ -538,11 +538,11 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<div style="float:right!important;top:0px; right:0px; left:10px; "><i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
         '<i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i></div>' +
+        'd"></i>' +
         "</button>";
   
       document.getElementById(parrentId).style.backgroundColor = "#f79a71";
@@ -568,11 +568,11 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<div style="float:right!important; right:0px; top:0px;left:10px;"><i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        'i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
         '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
-        'd"></i></div>' +
+        'd"></i>' +
         "</button>";
   
         document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
@@ -615,11 +615,11 @@ function editKeyword(e, data) {
       '-a" ' +
       'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      '<div style="float:right!important; top:0; right:0;left:10px "> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
-      'd"></i></div>' +
+      'd"></i>' +
       "</button>";
 
       document.getElementById(parrentId).style.backgroundColor = "#f79a71";
@@ -647,11 +647,11 @@ function editKeyword(e, data) {
       '-a" ' +
       'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      '<div style="float:right!important; top : 0; right: 0; left:10px;"> <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
-      'd"></i></div>' +
+      'd"></i>' +
       "</button>";
 
       document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";

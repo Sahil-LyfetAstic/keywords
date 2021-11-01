@@ -410,36 +410,24 @@
                                     <div class="list" id="edited">
                                             <div class="list" id="dis">
                                                 {{#each editKeyword}}
-                                                <div id="{{this._id}}-" class="example-draggable edited"
-                                                    draggable="true" ondragstart="onDragStart(event);"
-                                                    data-value="{{this.keyword_name}}">
-                                                    <input type="text" name="cat" value="{{this.keyword_name}}"
-                                                        id="{{this._id}}i" style="display: none;">
-                                                    <button value="{{this.keyword_name}}" style="all: unset;float: right:!important;"
-                                                        id="{{this.id}}b">
-                                                        <i id="add-b" class="fas fa-download add-b"
-                                                            style="padding: 10px;"></i>
-                                                        {{this.keyword_name}}<i id="{{this._id}}-a"
-                                                            class="fas fa-download add-a" style="padding: 10px;"
-                                                            ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
-                                                        <i class="fas fa-pen-square" style="padding: 10px; display:none;curser:pointer"
-                                                            id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
-                                                        <button value="{{this.keyword}}"
-                                                            style="all: unset;padding-left: 3%;" id="{{this.id}}b">
-                                                            <i id="add-b" class="fas fa-download add-b"
-                                                                style="padding: 10px;display:none;"></i>
-                                                            {{this.keyword}}<i id="{{this._id}}-a"
-                                                                class="fas fa-download add-a"
-                                                                style="padding: 10px;display:none;"
-                                                                ondragover="onDragOver(event);"
-                                                                ondrop="onDrop(event);"></i>
-                                                            <i class="fas fa-pen-square"
-                                                                style="padding: 10px;curser:pointer; display:none" id="e{{this._id}}-"
-                                                                onclick="editKeyword(event,this)"></i>
-                                                            <i class="fas fa-trash" style="padding: 10px;display:none;curser:pointer;"
-                                                                onclick="delKey(event,this)" id="d{{this._id}}-"></i>
-                                                        </button>
-                                                </div>
+                                                   <div id="{{this._id}}-" class="example-draggable edited" draggable="true"
+                                            ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
+                                            <input type="text" name="cat" value="{{this.keyword_name}}"
+                                                id="{{this._id}}i" style="display: none;">
+                                            <button value="{{this.keyword_name}}" style="all: unset; text-align: center;margin-left:18%;" id="{{this.id}}b">
+                                                <i id="add-b" class="fas fa-download add-b"
+                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
+                                                {{this.keyword_name}}<i id="{{this._id}}-a"
+                                                    class="fas fa-download add-a"
+                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"
+                                                    ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
+                                                    {{!-- <br/> --}}
+                                               <i class="fas fa-pen-square" style="padding: 10px; display:none;curser:pointer;"
+                                                    id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
+                                                <i class="fas fa-trash" style="padding: 10px; display:none;curser:pointer"
+                                                    onclick="delKey(event,this)" id="d{{this._id}}-"></i>
+                                            </button>
+                                        </div>
                                                 <br>
                                                 {{/each}}
                                             </div>
