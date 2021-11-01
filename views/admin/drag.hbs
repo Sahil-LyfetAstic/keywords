@@ -10,29 +10,15 @@
                 </div>
                 <div class="profile-usertitle">
                     <div class="sidebar-userpic-name"> {{admin.username}} </div>
-                    <div class="profile-usertitle-job ">Manager </div>
+                    <div class="profile-usertitle-job ">Keyword Manager </div>
                 </div>
-            </li>
-            <li class="active">
-                <a href="#" onClick="return false;" class="menu-toggle">
-                    <i class="fas fa-tachometer-alt"></i>
-                    <a href="subadmin">Home</a>
-                </a>
             </li>
             <li>
                 <a href="#" onClick="return false;" class="menu-toggle">
                     <i class="fas fa-mail-bulk"></i>
-                    <span>TLD Management</span>
+                    <span>Keyword Management</span>
                 </a>
-                <ul class="ml-menu">
-                    <li>
-                        <a href="#">status</a>
-                    </li>
-
-                </ul>
             </li>
-
-
         </ul>
     </div>
     <!-- #Menu -->
@@ -243,182 +229,242 @@
                 <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                     <ul class="breadcrumb breadcrumb-style ">
                         <li class="breadcrumb-item">
-                            <h4 class="page-title">Sub Admin Home</h4>
+                            <h4 class="page-title">Keyword Managemnt</h4>
                         </li>
                         <li class="breadcrumb-item bcrumb-1">
                             <a href="../../index.html">
                                 <i class="fas fa-home"></i> Resurs</a>
                         </li>
-                        <li class="breadcrumb-item active">Add Main Service</li>
+                        <li class="breadcrumb-item active">Service</li>
                     </ul>
                 </div>
             </div>
         </div>
         <div class="row" onload="setStyle(event)">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <div class="card">
+            <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
+                <div class="card" style="background: #fff;
+                box-shadow: none;border: 0;
+                position: relative;
+                -webkit-border-radius: 10px;
+                -moz-border-radius: 10px;
+                -ms-border-radius: 10px;
+                -radius: 25px;">
                     <div class="body">
-
-                        <div class="table-responsive">
+                        <div class="table-responsive" style="overflow: hidden;">
                             <div class="">
                                 <h5 id="uploadmsg" style="display: none;"></h5>
                             </div>
                             <br>
                             <form id="add-keyword-form">
                                 <div class="form-group">
-                                    <h5>Upload Keyword</h5>
-                                    <br>
-                                    <select class="form-select col-md-3" id="collection-drop" name="coll">
+                                    <h5 style="font-size: 24px; color:#0c7ddf">Upload Files</h5>
+                                    <select class="form-select col-md-12" id="collection-drop" name="coll">
+                                        <option>Select Service</option>
                                         {{#each service}}
                                         <option value="{{this._id}}">{{this.keyword_collection}}</option>
                                         {{/each}}
                                     </select>
-
                                 </div>
-
-                                <div class="form-group">
-                                    <label for="myFile">upload file</label>
-                                    <input type="file" id="keyword-file" name="myfile">
-
+                                <div class="form-row">
+                                    <div class="col-md-8">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="myfile"
+                                                id="keyword-file">
+                                            <label class="custom-file-label" for="customFile"
+                                                style="font-size:16px;">Choose file</label>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-4">
+                                        <button type="submit" id="add-key" class="btn btn-info"
+                                            style="width: 100%;">Upload</button>
+                                    </div>
                                 </div>
-
-
-
-                                <button type="submit" id="add-key" class="btn btn-primary">Upload</button>
                             </form>
-
-
-
                         </div>
                     </div>
                 </div>
             </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="support-box text-center l-bg-red">
+                    <div class="icon m-b-10">
+                        <div class="chart chart-bar-2">
+                            <i class="fa fa-user" aria-hidden="true" style="font-size: 60px;margin-bottom: 7px;"></i>
+                        </div>
+                    </div>
+                    <div class="text m-b-10" style="font-size: 25px;
+                    margin-bottom: 5%;">Categories</div>
+                    <h3 class="m-b-0" style="margin-bottom: 22px;">3
+                        <i class="material-icons">trending_up</i>
+                    </h3>
+                </div>
+            </div>
+            <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                <div class="support-box text-center l-bg-cyan">
+                    <div class="icon m-b-10">
+                        <div class="chart chart-bar-2">
+                            <i class="fa fa-check" aria-hidden="true" style="font-size: 60px;margin-bottom: 7px;"></i>
+                        </div>
+                    </div>
+                    <div class="text m-b-10" style="font-size: 25px;margin-bottom: 5%;">Submitted Keywords</div>
+                    <h3 class="m-b-0" style="margin-bottom: 22px;">3
+                        <i class="material-icons">trending_up</i>
+                    </h3>
+                </div>
+            </div>
+            <style>
+                .fa-plus-circle:before {
+                    content: "\f055";
+                    color: #fff;
+                }
+            </style>
         </div>
-
         <div class="row" onload="setStyle(event)" id="form-div">
             <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div class="card">
                     <div class="body">
                         <div class="table-responsive">
 
-                            <div class="alert">
+                            {{!-- <div class="alert">
                                 <span style="color: red; padding-left:250px" id="errMsgsubcat"></span>
-                                <span style="color:green; padding-left:250px" id="success-msg"></span>
-                            </div>
-
-
+                                <span span style="color:green; padding-left:250px" id="success-msg"></span>
+                            </div> --}}
                             <div class="row" id="drag">
-                                <div class="col-md-4">
-                                    <div class="form-group">
-                                        <h5>select service</h5>
-                                        <select class="form-select" id="ser-key">
-                                            {{#each service}}
-                                            <option value="{{this._id}}">{{this.keyword_collection}}</option>
-                                            {{/each}}
-                                        </select>
-                                    </div>
-                                </div>
-                                <div class="col-md-4">
-                                    <div class="form-group">
-
-                                        <h5 id="afteruploadmsg" style="display:none;"></h5>
-                                    </div>
-                                </div>
                             </div>
-
-
                             <div class="row lists" id="tst">
-                                <div class="col-md-4">
-                                    <div class="list" id="dis">
+                                <div class="col-md-3">
+                                    <h3 style="font-size: 20px;
+                                    color: #4e63cf;
+                                    font-weight: 600;
+                                    text-align: center;
+                                    margin-bottom: 4%;">Keywords List</h3>
+                                    <select class="form-select" id="ser-key" style="margin-bottom: 9%;">
+                                        {{!-- <option>Select Service</option> --}}
+                                        {{#each service}}
+                                        <option value="{{this._id}}">{{this.keyword_collection}}</option>
+                                        {{/each}}
+                                    </select>
+                                    <div class="list" id="dis" style="margin-bottom: 6%;">
 
                                         {{#each keywords}}
 
                                         <div id="{{this._id}}-" class="example-draggable" draggable="true"
                                             ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
-                                            <input type="text" name="cat" value="{{this.keyword_name}}" id="{{this._id}}i"
-                                                style="display: none;">
-                                            <button value="{{this.keyword_name}}" style="all: unset;" id="{{this.id}}b">
-                                                <i id="add-b" class="fas fa-plus-circle add-b"
-                                                    style="padding: 10px;"></i>
+                                            <input type="text" name="cat" value="{{this.keyword_name}}"
+                                                id="{{this._id}}i" style="display: none;">
+                                            <button value="{{this.keyword_name}}" style="all: unset; text-align: center;margin-left:18%;" id="{{this.id}}b">
+                                                <i id="add-b" class="fas fa-download add-b"
+                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
                                                 {{this.keyword_name}}<i id="{{this._id}}-a"
-                                                    class="fas fa-plus-circle add-a" style="padding: 10px;"
+                                                    class="fas fa-download add-a"
+                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"
                                                     ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
-
-                                                <i class="fas fa-pen-square" style="padding: 10px; display:none" id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
-                                                <i class="fas fa-trash" style="padding: 10px; display:none"
+                                                    {{!-- <br/> --}}
+                                               <i class="fas fa-pen-square" style="padding: 10px; display:none;curser:pointer;"
+                                                    id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
+                                                <i class="fas fa-trash" style="padding: 10px; display:none;curser:pointer"
                                                     onclick="delKey(event,this)" id="d{{this._id}}-"></i>
                                             </button>
                                         </div>
-
                                         <br>
                                         {{/each}}
-
-
                                     </div>
                                 </div>
-
-
-                
                                 <div class="col-md-4" id="rel-form">
-                                    <form  id="relation-form">
-                                        <div class="list list2" id="list2" ondragover="onDragOver(event);"
-                                            ondrop="onDrop(event);">
-
-
+                                    <form id="relation-form">
+                                        <h3 style="font-size: 20px;
+                                    color: #4e63cf;
+                                    font-weight: 600;
+                                    text-align: center;
+                                    margin-bottom: 4%;">Combine Keywords</h3>
+                                        <div class="row" style="float: center;">
+                                            <p style="font-size: 12px;
+                                             text-align: center;">Please select & drag keywords from the keyword list & place below</p>
+                                            <div class="col-md-2"></div>
+                                            <div class="col-md-1"
+                                                style="background-color: #fda38b;height:15px;width:15px;">
+                                            </div>
+                                            <div class="col-md-9" style="font-size: 13px;
+                                            color: #abb0b5;margin-bottom: 0%;
+                                            "> Shows duplication | Duplicate entries are not allowed </div>
                                         </div>
-                                        <button id="relation-submit">submit</button>
-
-                                    </form>
-
+                                        <form action="relation-form" id="relation-form">
+                                            <div class="list list2" id="list2" ondragover="onDragOver(event);"
+                                                ondrop="onDrop(event);">
+                                            </div>
+                                            <button id="relation-submit"
+                                                style="width: 100%; border:none;margin-top:2%;padding:2%;">submit</button>
+                                        </form>
                                 </div>
-
-                                    <div class="col-md-4">
-                                   <div class="list" id="edited">
-
-                                        {{#each editKeyword}}
-
-                                        <div id="{{this._id}}-" class="example-draggable edited" draggable="true"
-                                            ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
-                                            <input type="text" name="cat" value="{{this.keyword_name}}" id="{{this._id}}i"
-                                                style="display: none;">
-                                            <button value="{{this.keyword_name}}" style="all: unset;" id="{{this.id}}b">
-                                                <i id="add-b" class="fas fa-plus-circle add-b"
-                                                    style="padding: 10px;"></i>
-                                                {{this.keyword_name}}<i id="{{this._id}}-a"
-                                                    class="fas fa-plus-circle add-a" style="padding: 10px;"
-                                                    ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
-
-                                                <i class="fas fa-pen-square" style="padding: 10px; display:none" id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
-                                                <i class="fas fa-trash" style="padding: 10px; display:none"
-                                                    onclick="delKey(event,this)" id="d{{this._id}}-"></i>
-                                            </button>
+                                <div class="col-md-5">
+                                    <h3 style="font-size: 20px;
+                                    color: #4e63cf;
+                                    font-weight: 600;
+                                    text-align: center;
+                                    margin-bottom: 4%;">Combined Keywords</h3>
+                                    <p style="font-size: 14px;
+                                    color: #000;
+                                    text-align: center;
+                                    margin-bottom: 7%;">
+                                       List of combined keywords
+                                    </p>
+                                    <div class="list" id="edited">
+                                            <div class="list" id="dis">
+                                                {{#each editKeyword}}
+                                                <div id="{{this._id}}-" class="example-draggable edited"
+                                                    draggable="true" ondragstart="onDragStart(event);"
+                                                    data-value="{{this.keyword_name}}">
+                                                    <input type="text" name="cat" value="{{this.keyword_name}}"
+                                                        id="{{this._id}}i" style="display: none;">
+                                                    <button value="{{this.keyword_name}}" style="all: unset;float: right:!important;"
+                                                        id="{{this.id}}b">
+                                                        <i id="add-b" class="fas fa-download add-b"
+                                                            style="padding: 10px;"></i>
+                                                        {{this.keyword_name}}<i id="{{this._id}}-a"
+                                                            class="fas fa-download add-a" style="padding: 10px;"
+                                                            ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
+                                                        <i class="fas fa-pen-square" style="padding: 10px; display:none;curser:pointer"
+                                                            id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
+                                                        <button value="{{this.keyword}}"
+                                                            style="all: unset;padding-left: 3%;" id="{{this.id}}b">
+                                                            <i id="add-b" class="fas fa-download add-b"
+                                                                style="padding: 10px;display:none;"></i>
+                                                            {{this.keyword}}<i id="{{this._id}}-a"
+                                                                class="fas fa-download add-a"
+                                                                style="padding: 10px;display:none;"
+                                                                ondragover="onDragOver(event);"
+                                                                ondrop="onDrop(event);"></i>
+                                                            <i class="fas fa-pen-square"
+                                                                style="padding: 10px;curser:pointer; display:none" id="e{{this._id}}-"
+                                                                onclick="editKeyword(event,this)"></i>
+                                                            <i class="fas fa-trash" style="padding: 10px;display:none;curser:pointer;"
+                                                                onclick="delKey(event,this)" id="d{{this._id}}-"></i>
+                                                        </button>
+                                                </div>
+                                                <br>
+                                                {{/each}}
+                                            </div>
                                         </div>
-
-                                        <br>
-                                        {{/each}}
-
-
                                     </div>
-
-                                </div>
-                            </div>
-                            <div class="modal" tabindex="-1" role="dialog">
-                                <div class="modal-dialog" role="document">
-                                    <div class="modal-content">
-                                        <div class="modal-header">
-                                            <h5 class="modal-title">Modal title</h5>
-                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
-                                            </button>
-                                        </div>
-                                        <div class="modal-body">
-                                            <input type="text" name="modal-input" id="modal-input" value="">
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-primary" id="modal-save">Save
-                                                changes</button>
-                                            <button type="button" class="btn btn-secondary" id="modal-close"
-                                                data-dismiss="modal">Close</button>
+                                    <div class="modal" tabindex="-1" role="dialog">
+                                        <div class="modal-dialog" role="document">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title">Modal title</h5>
+                                                    <button type="button" class="close" data-dismiss="modal"
+                                                        aria-label="Close">
+                                                        <span aria-hidden="true">&times;</span>
+                                                    </button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    <input type="text" name="modal-input" id="modal-input" value="">
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-primary" id="modal-save">Save
+                                                        changes</button>
+                                                    <button type="button" class="btn btn-secondary" id="modal-close"
+                                                        data-dismiss="modal">Close</button>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
@@ -426,8 +472,4 @@
                         </div>
                     </div>
                 </div>
-            </div>
-        </div>
-
-
 </section>

@@ -1,16 +1,9 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-cart</title>
-</head>
-<body  class="light">
-     <div class="page-loader-wrapper">
+<body class="light" style="background-color: #f1f2f7;font-family: 'Roboto', sans-serif;">
+    <!-- Page Loader -->
+    <div class="page-loader-wrapper">
         <div class="loader">
             <div class="m-t-30">
-                <img class="loading-img-spin" src="/admin/images/loading.png" width="20" height="20" alt="admin">
+                <img class="loading-img-spin" src="admin/images/Resurs_websitelogo.png" alt="admin">
             </div>
             <p>Please wait...</p>
         </div>
@@ -20,27 +13,83 @@
     <div class="overlay"></div>
     <!-- #END# Overlay For Sidebars -->
     <!-- Top Bar -->
-    <nav class="navbar">
-        <div class="container-fluid">
+    <style>
+    .navbar>.container, .navbar>.container-fluid, .navbar>.container-lg, .navbar>.container-md, .navbar>.container-sm, .navbar>.container-xl, .navbar>.container-xxl {
+    display: block;
+    flex-wrap: inherit;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #000;
+}
+.navbar {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    padding-top: 0rem;
+    padding-bottom: 0.5rem;
+}
+.logo-white .navbar-header {
+    background-color: #fff;
+}
+.light .nav > li > a {
+    color: #efefef;
+}
+
+.container, .container-fluid, .container-xxl, .container-xl, .container-lg, .container-md, .container-sm {
+    width: 100%;
+    padding-right: var(--bs-gutter-x,1.75rem);
+    padding-left: var(--bs-gutter-x,0.75rem);
+    margin-right: auto;
+    margin-left: auto;
+}
+section.content {
+    margin: 2% 15px 0 276px;
+    -moz-transition: 0.5s;
+    -o-transition: 0.5s;
+    -webkit-transition: 0.5s;
+    transition: 0.5s;
+}
+
+
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border-radius: 0.4rem;
+    border: none;
+    box-shadow: #000;
+    padding: 1%;
+}
+ </style>
+    <nav class="navbar"  style="position : sticky;
+	top :0;">
+       <div class="container-fluid">
             <div class="navbar-header">
-                <a href="#" onClick="return false;" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
-                <a href="#" onClick="return false;" class="bars"></a>
-                <a class="navbar-brand" href="/index.html">
-                    <img src="/admin/images/logo.png" alt="" />
-                    <span class="logo-name">E-cart</span>
+                <a href="#" onclick="return false;" class="navbar-toggle collapsed" data-bs-toggle="collapse" data-target="#navbar-collapse" aria-expanded="false"></a>
+                <a href="#" onclick="return false;" class="bars" style="display: none;"></a>
+                <a class="navbar-brand" href="index.html">
+                    <img src="admin/images/logo.png" alt="Resurs Guide"  style="height: 40px!important;">
+                    <span class="logo-name">Resurs Guide</span>
                 </a>
             </div>
             <div class="collapse navbar-collapse" id="navbar-collapse">
                 <ul class="pull-left">
                     <li>
-                        <a href="#" onClick="return false;" class="sidemenu-collapse">
-                            <i class="material-icons">reorder</i>
+                        <a href="#" onclick="return false;" class="sidemenu-collapse">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-menu"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>
                         </a>
                     </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <!-- Full Screen Button -->
-                    <li class="fullscreen">]
+                    <li class="fullscreen">
                         <a href="javascript:;" class="fullscreen-btn">
                             <i class="fas fa-expand"></i>
                         </a>
@@ -48,144 +97,145 @@
                     <!-- #END# Full Screen Button -->
                     <!-- #START# Notifications-->
                     <li class="dropdown">
-                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button">
+                        <a href="#" onclick="return false;" class="dropdown-toggle" data-bs-toggle="dropdown" role="button">
                             <i class="far fa-bell"></i>
-                            <span class="label-count bg-orange"></span>
+                            <span class="notify"></span>
+                            <span class="heartbeat"></span>
                         </a>
-                        <ul class="dropdown-menu pullDown">
+                        {{!-- <ul class="dropdown-menu pullDown">
                             <li class="header">NOTIFICATIONS</li>
                             <li class="body">
-                                <ul class="menu">
+                                <div class="slimScrollDiv" style="position: relative; overflow: hidden; width: auto; height: 254px;"><ul class="menu" style="overflow: hidden; width: auto; height: 254px;">
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <span class="table-img msg-user">
-                                                <img src="/admin/images/user/user1.jpg" alt="">
+                                                <img src="images/user/user1.jpg" alt="">
                                             </span>
                                             <span class="menu-info">
                                                 <span class="menu-title">Sarah Smith</span>
-                                            <span class="menu-desc">
+                                                <span class="menu-desc">
                                                     <i class="material-icons">access_time</i> 14 mins ago
                                                 </span>
-                                            <span class="menu-desc">Please check your email.</span>
+                                                <span class="menu-desc">Please check your email.</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <span class="table-img msg-user">
-                                                <img src="/admin/images/user/user2.jpg" alt="">
+                                                <img src="assets/images/user/user2.jpg" alt="">
                                             </span>
                                             <span class="menu-info">
                                                 <span class="menu-title">Airi Satou</span>
-                                            <span class="menu-desc">
+                                                <span class="menu-desc">
                                                     <i class="material-icons">access_time</i> 22 mins ago
                                                 </span>
-                                            <span class="menu-desc">Please check your email.</span>
+                                                <span class="menu-desc">Please check your email.</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <span class="table-img msg-user">
-                                                <img src="/admin/images/user/user3.jpg" alt="">
+                                                <img src="assets/images/user/user3.jpg" alt="">
                                             </span>
                                             <span class="menu-info">
                                                 <span class="menu-title">John Doe</span>
-                                            <span class="menu-desc">
+                                                <span class="menu-desc">
                                                     <i class="material-icons">access_time</i> 3 hours ago
                                                 </span>
-                                            <span class="menu-desc">Please check your email.</span>
+                                                <span class="menu-desc">Please check your email.</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <span class="table-img msg-user">
-                                                <img src="/admin/images/user/user4.jpg" alt="">
+                                                <img src="assets/images/user/user4.jpg" alt="">
                                             </span>
                                             <span class="menu-info">
                                                 <span class="menu-title">Ashton Cox</span>
-                                            <span class="menu-desc">
+                                                <span class="menu-desc">
                                                     <i class="material-icons">access_time</i> 2 hours ago
                                                 </span>
-                                            <span class="menu-desc">Please check your email.</span>
+                                                <span class="menu-desc">Please check your email.</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <span class="table-img msg-user">
-                                                <img src="/admin/images/user/user5.jpg" alt="">
+                                                <img src="assets/images/user/user5.jpg" alt="">
                                             </span>
                                             <span class="menu-info">
                                                 <span class="menu-title">Cara Stevens</span>
-                                            <span class="menu-desc">
+                                                <span class="menu-desc">
                                                     <i class="material-icons">access_time</i> 4 hours ago
                                                 </span>
-                                            <span class="menu-desc">Please check your email.</span>
+                                                <span class="menu-desc">Please check your email.</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <span class="table-img msg-user">
-                                                <img src="/admin/images/user/user6.jpg" alt="">
+                                                <img src="assets/images/user/user6.jpg" alt="">
                                             </span>
                                             <span class="menu-info">
                                                 <span class="menu-title">Charde Marshall</span>
-                                            <span class="menu-desc">
+                                                <span class="menu-desc">
                                                     <i class="material-icons">access_time</i> 3 hours ago
                                                 </span>
-                                            <span class="menu-desc">Please check your email.</span>
+                                                <span class="menu-desc">Please check your email.</span>
                                             </span>
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <span class="table-img msg-user">
-                                                <img src="/admin/images/user/user7.jpg" alt="">
+                                                <img src="assets/images/user/user7.jpg" alt="">
                                             </span>
                                             <span class="menu-info">
                                                 <span class="menu-title">John Doe</span>
-                                            <span class="menu-desc">
+                                                <span class="menu-desc">
                                                     <i class="material-icons">access_time</i> Yesterday
                                                 </span>
-                                            <span class="menu-desc">Please check your email.</span>
+                                                <span class="menu-desc">Please check your email.</span>
                                             </span>
                                         </a>
                                     </li>
-                                </ul>
+                                </ul><div class="slimScrollBar" style="background: rgba(0, 0, 0, 0.5) none repeat scroll 0% 0%; width: 4px; position: absolute; top: 0px; opacity: 0.4; display: block; border-radius: 0px; z-index: 99; right: 1px;"></div><div class="slimScrollRail" style="width: 4px; height: 100%; position: absolute; top: 0px; display: none; border-radius: 0px; background: rgb(51, 51, 51) none repeat scroll 0% 0%; opacity: 0.2; z-index: 90; right: 1px;"></div></div>
                             </li>
                             <li class="footer">
-                                <a href="#" onClick="return false;">View All Notifications</a>
+                                <a href="#" onclick="return false;">View All Notifications</a>
                             </li>
-                        </ul>
+                        </ul> --}}
                     </li>
                     <!-- #END# Notifications-->
                     <li class="dropdown user_profile">
-                        <a href="#" onClick="return false;" class="dropdown-toggle" data-toggle="dropdown" role="button">
-                            <img src="/admin/images/user.jpg" width="32" height="32" alt="User">
-                        </a>
+                        <div class="dropdown-toggle" data-bs-toggle="dropdown">
+                            <img src="admin/images/user.jpg" alt="user">
+                        </div>
                         <ul class="dropdown-menu pullDown">
                             <li class="body">
                                 <ul class="user_dw_menu">
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <i class="material-icons">person</i>Profile
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <i class="material-icons">feedback</i>Feedback
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="#" onClick="return false;">
+                                        <a href="#" onclick="return false;">
                                             <i class="material-icons">help</i>Help
                                         </a>
                                     </li>
                                     <li>
-                                        <a href="logout">
+                                        <a href="#" onclick="return false;">
                                             <i class="material-icons">power_settings_new</i>Logout
                                         </a>
                                     </li>
@@ -195,7 +245,7 @@
                     </li>
                     <!-- #END# Tasks -->
                     <li class="pull-right">
-                        <a href="#" onClick="return false;" class="js-right-sidebar" data-close="true">
+                        <a href="#" onclick="return false;" class="js-right-sidebar" data-close="true">
                             <i class="fas fa-cog"></i>
                         </a>
                     </li>
@@ -204,11 +254,10 @@
         </div>
     </nav>
     <!-- #Top Bar -->
+
     <div>
         <!-- Left Sidebar -->
   
         <!-- #END# Right Sidebar -->
         {{{body}}}
     </div>
-</body>
-</html> 
