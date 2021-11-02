@@ -194,7 +194,18 @@ module.exports = {
           }
         )
         .then((response) => {
-          resolve(response)
+          resolve(response);
+        });
+    });
+  },
+  docCounter: (collId) => {
+    return new Promise(async (resolve, reject) => {
+      await db
+        .get()
+        .collection(collId)
+        .count()
+        .then((counts) => {
+          resolve(counts);
         });
     });
   },

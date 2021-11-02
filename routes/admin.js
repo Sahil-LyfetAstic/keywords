@@ -9,9 +9,8 @@ var docxParser = require("docx-parser");
 const collection = require("../config/collection");
 const verifyLogin = (req, res, next) => {
   if (req.session.loggedIn) {
-    next()
-  }  
-   else {
+    next();
+  } else {
     res.redirect("/login");
   }
 };
@@ -30,17 +29,17 @@ const loginAccess = (req, res, next) => {
 
 /* GET home page. */
 router.get("/", verifyLogin, (req, res) => {
-  if(req.session.loggedIn){
-    res.redirect('/home')
-  }else{
+  if (req.session.loggedIn) {
+    res.redirect("/home");
+  } else {
     res.render("admin/login", { user: true });
   }
 });
 
 router.get("/login", (req, res) => {
-  if(req.session.loggedIn){
-    res.redirect('/home')
-  }else{
+  if (req.session.loggedIn) {
+    res.redirect("/home");
+  } else {
     res.render("admin/login", { user: true });
   }
 });
@@ -188,16 +187,18 @@ router.post("/submit-keyword", (req, res) => {
 });
 
 router.get("/drag", (req, res) => {
+  let coll = "Real_Estate";
   adminHelper.getAprovedColl().then((service) => {
-    let coll = "Real_Estate";
-
     adminHelper.getCsv(coll).then((keywords) => {
       adminHelper.getEditedKeyword().then((editKeyword) => {
-        res.render("admin/drag", {
-          admin: true,
-          service,
-          keywords,
-          editKeyword,
+        adminHelper.docCounter(collection.KEYWORD_COLLECTION).then((count) => {
+          res.render("admin/drag", {
+            admin: true,
+            service,
+            keywords,
+            editKeyword,
+            count,
+          });
         });
       });
     });

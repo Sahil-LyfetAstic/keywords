@@ -3,7 +3,6 @@ $("#admin-login").submit((e) => {
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
   if (username === "" || password === "") {
-    console.log("enter details");
   } else {
     $.ajax({
       url: "login",
@@ -13,15 +12,14 @@ $("#admin-login").submit((e) => {
         password,
       },
       success: (response) => {
-        console.log(response);
         if (response.user === false) {
           alert("user not found");
         } else if (response.password === false) {
           alert("incorrect password");
         } else if (response.login === true) {
           window.location.href = "home";
-        }else if(response.oneUserActive === true){
-          alert("one user is working")
+        } else if (response.oneUserActive === true) {
+          alert("one user is working");
         }
       },
     });
@@ -37,9 +35,7 @@ $("#add-keyword-form").submit((e) => {
     processData: false,
     contentType: false,
     success: (response) => {
-      console.log(response)
       if (response === true) {
-        console.log(response);
         $("#uploadmsg").html("added succes").css("color", "green").show();
         $("#uploadmsg").delay(1000).hide(0);
         $("#add-keyword-form").load(location.href + " #add-keyword-form");
@@ -355,12 +351,11 @@ function onDragOver(event) {
   event.preventDefault();
 }
 
-let count = 0;
+let count = 1;
 
 function onDrop(event) {
   const dropzone = event.target;
   event.target.style.backgroundColor = "#ededed";
-  console.log(dropzone)
   if (dropzone.className === "list list2") {
     const id = event.dataTransfer.getData("text");
     const draggableElement = document.getElementById(id);
@@ -393,11 +388,8 @@ function onDrop(event) {
       if (isKey === true) {
         //changing background color
         draggableElement.style.backgroundColor = "#fda38b";
-        draggableElement.childNodes[1].name = 'duplicate' //change name for sorting
+        draggableElement.childNodes[1].name = "duplicate"; //change name for sorting
 
-
-
-       console.log(document.getElementById(draggableElement.id))
         document.getElementById(draggableElement.id).id =
           draggableElement.id + count;
         document.getElementById("e" + draggableElement.id).id =
@@ -440,13 +432,12 @@ function onDrop(event) {
     const firstValue = dropzone.parentElement.value;
     let secondId = id.split("-")[0].replace(/-/g, "");
     const secondValue = document.getElementById(secondId + "i").value;
-    const keyword = firstValue + " " + secondValue.trim()  
+    const keyword = firstValue + " " + secondValue.trim();
 
     //keyword exist
-    
+
     let isKey = sorting(keyword);
-    if(isKey === true){
-      
+    if (isKey === true) {
       let html =
         '<input type="text" value="' +
         keyword +
@@ -474,8 +465,7 @@ function onDrop(event) {
         "</button>";
       document.getElementById(parrentId).style.backgroundColor = "#f79a71";
       document.getElementById(parrentId).innerHTML = html;
-    }else {
-     
+    } else {
       let html =
         '<input type="text" value="' +
         keyword +
@@ -501,24 +491,21 @@ function onDrop(event) {
         parrentId +
         'd"></i>' +
         "</button>";
-      
-        document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
+
+      document.getElementById(parrentId).style.backgroundColor =
+        "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
-
-   
   } else if (dropzone.className === "fas fa-download add-b") {
-
-     const id = event.dataTransfer.getData("text");
-      const parrentId = dropzone.parentElement.parentElement.id;
-      const firstValue = dropzone.parentElement.value;
-      let secondId = id.split("-")[0].replace(/-/g, "");
-      const secondValue = document.getElementById(secondId + "i").value;
-      const keyword = secondValue + " " + firstValue.trim();
-
+    const id = event.dataTransfer.getData("text");
+    const parrentId = dropzone.parentElement.parentElement.id;
+    const firstValue = dropzone.parentElement.value;
+    let secondId = id.split("-")[0].replace(/-/g, "");
+    const secondValue = document.getElementById(secondId + "i").value;
+    const keyword = secondValue + " " + firstValue.trim();
 
     let isKey = sorting(keyword);
-    if(isKey === true){      
+    if (isKey === true) {
       let html =
         '<input type="text" name="duplicate" value="' +
         keyword +
@@ -544,11 +531,10 @@ function onDrop(event) {
         parrentId +
         'd"></i>' +
         "</button>";
-  
+
       document.getElementById(parrentId).style.backgroundColor = "#f79a71";
       document.getElementById(parrentId).innerHTML = html;
-    }else{
-     
+    } else {
       let html =
         '<input type="text" name="cat" value="' +
         keyword +
@@ -574,29 +560,30 @@ function onDrop(event) {
         parrentId +
         'd"></i>' +
         "</button>";
-  
-        document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
+
+      document.getElementById(parrentId).style.backgroundColor =
+        "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
-   
   }
 }
 
 function editKeyword(e, data) {
   e.preventDefault();
-  console.log(data);
-  console.log(data.parentElement);
   let parrentId = data.parentElement.parentElement.id;
+
   $(".modal").modal("show");
   document.getElementById("modal-input").value = data.parentElement.value;
+  document.getElementById("modal-input").name = parrentId;
+}
 
-  $("#modal-save").click((e) => {
-    let editedData = document.getElementById("modal-input").value.trim()  
-    let isKey = sorting(editedData);
-    if(isKey === true){
+$("#modal-save").click((e) => {
+  let editedData = document.getElementById("modal-input").value.trim();
+  let parrentId = document.getElementById("modal-input").name;
 
-
-      let html =
+  let isKey = sorting(editedData);
+  if (isKey === true) {
+    let html =
       '<input type="text" name="duplicate" value="' +
       editedData +
       '" id="' +
@@ -622,13 +609,11 @@ function editKeyword(e, data) {
       'd"></i>' +
       "</button>";
 
-      document.getElementById(parrentId).style.backgroundColor = "#f79a71";
+    document.getElementById(parrentId).style.backgroundColor = "#f79a71";
     document.getElementById(parrentId).innerHTML = html;
     $(".modal").modal("hide");
-    }else{
-
-
-      let html =
+  } else {
+    let html =
       '<input type="text" name="cat" value="' +
       editedData +
       '" id="' +
@@ -654,28 +639,23 @@ function editKeyword(e, data) {
       'd"></i>' +
       "</button>";
 
-      document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
+    document.getElementById(parrentId).style.backgroundColor =
+      "rgb(223 227 226 / 77%)";
     document.getElementById(parrentId).innerHTML = html;
     $(".modal").modal("hide");
-      
-    }
-    
-  });
-
-}
+  }
+});
 
 $("#modal-close").click(() => $(".modal").modal("hide"));
 
 function delKey(event, data) {
   event.preventDefault();
-  console.log("button clicked");
   let id = data.parentElement.parentElement.id;
   var el = document.getElementById(id);
   el.parentNode.removeChild(el);
 }
 
 $("#relation-form").submit((e) => {
-  console.log("button clicked");
   e.preventDefault();
 
   let data = $("#relation-form").serializeArray();
@@ -688,20 +668,19 @@ $("#relation-form").submit((e) => {
       type: "post",
       data: data,
       success: (response) => {
-        console.log(response);
         if (response === true) {
           $("#afteruploadmsg")
             .html("added succes")
             .css("color", "green")
             .show();
           $("#afteruploadmsg").delay(1000).hide(0);
-          $( "#list2" ).empty()
+          $("#list2").empty();
           $("#edited").load(location.href + " #edited");
         }
       },
     });
   }
-  return false
+  return false;
 });
 
 function flushEdited(keyword) {
@@ -730,5 +709,3 @@ function sorting(keyword) {
 
   return key;
 }
-
-
