@@ -19791,7 +19791,7 @@ html.ie11 .bs-searchbox .form-control {
   transition: all 0.2s linear;
   border: 1px solid #efefef;
   height: 500px!important;
-  overflow: hidden;
+  overflow: initial;
 }
 .lists .list .list-item{
   /* background-color: #eeedea; */

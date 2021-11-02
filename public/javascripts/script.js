@@ -28,27 +28,34 @@ $("#admin-login").submit((e) => {
 
 $("#add-keyword-form").submit((e) => {
   e.preventDefault();
-  $.ajax({
-    url: "upload-keyword",
-    type: "post",
-    data: new FormData(document.getElementById("add-keyword-form")),
-    processData: false,
-    contentType: false,
-    success: (response) => {
-      if (response === true) {
-        $("#uploadmsg").html("added succes").css("color", "green").show();
-        $("#uploadmsg").delay(1000).hide(0);
-        $("#upload-key").load(location.href + " #upload-key");
-      } else {
-        $("#uploadmsg")
-          .html("file format not support")
-          .css("color", "red")
-          .show();
-        $("#uploadmsg").delay(1000).hide(0);
-        $("#upload-key").load(location.href + " #upload-key");
-      }
-    },
-  });
+  let file = document.getElementById('keyword-file')
+  if(file.files.length === 0){
+    $("#uploadmsg").html("file cannot be empty").css("color", "green").show();
+    $("#uploadmsg").delay(1000).hide(0);
+  }else{
+    $('#loading-gif').show()
+    $.ajax({
+      url: "upload-keyword",
+      type: "post",
+      data: new FormData(document.getElementById("add-keyword-form")),
+      processData: false,
+      contentType: false,
+      success: (response) => {
+        if (response === true) {
+          $('#loading-gif').hide()
+          $("#uploadmsg").html("added succes").css("color", "green").show();
+          $("#uploadmsg").delay(1000).hide(0);
+          $("#upload-key").load(location.href + " #upload-key");
+        } else {
+          $('#loading-gif').hide()
+          $("#uploadmsg").html("file format not support").css("color", "red").show();
+          $("#uploadmsg").delay(1000).hide(0);
+          $("#upload-key").load(location.href + " #upload-key");
+        }
+      },
+    });
+  }
+
 
   // return false;
 });
@@ -543,10 +550,6 @@ function onDrop(event) {
         "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
-  }else if(dropzone.className === 'fas fa-pen-square' ){
-    event.preventDefault()
-  }else if(dropzone.className === 'fas fa-trash'){
-    event.preventDefault()
   }
   else{
     event.preventDefault()

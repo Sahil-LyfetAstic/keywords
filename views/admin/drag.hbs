@@ -258,7 +258,7 @@
                             <form id="add-keyword-form">
                                 <div class="form-group">
                                    <div style="float: left; display:inline-block;"> <h5 style="font-size: 24px; color:#0c7ddf">Upload Files</h5></div>
-                                  <div class="spinner-border text-success" style="float: right;display:inline-block"></div> 
+                                  <div class="spinner-border text-success" style="float: right;display:none" id="loading-gif"></div> 
                                     <select class="form-select col-md-12" id="collection-drop" name="coll"> 
                                         {{#each service}}
                                         <option value="{{this._id}}">{{this.keyword_collection}}</option>
