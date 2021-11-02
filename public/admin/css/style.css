@@ -11664,7 +11664,7 @@ fieldset[disabled] .form-control {
 }
 .navbar-nav.navbar-right {
   float: right !important;
-  margin-right: -15px;
+  margin-right: 8%;
 }
 .navbar-nav .dropdown-menu {
   margin-top: 60px !important;
