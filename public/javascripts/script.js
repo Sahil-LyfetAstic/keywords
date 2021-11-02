@@ -355,6 +355,7 @@ let count = 1;
 
 function onDrop(event) {
   const dropzone = event.target;
+  console.log(dropzone)
   event.target.style.backgroundColor = "#ededed";
   if (dropzone.className === "list list2") {
     const id = event.dataTransfer.getData("text");
@@ -542,6 +543,13 @@ function onDrop(event) {
         "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
+  }else if(dropzone.className === 'fas fa-pen-square' ){
+    event.preventDefault()
+  }else if(dropzone.className === 'fas fa-trash'){
+    event.preventDefault()
+  }
+  else{
+    event.preventDefault()
   }
 }
 
