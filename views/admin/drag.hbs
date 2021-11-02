@@ -257,9 +257,15 @@
                             <br>
                             <form id="add-keyword-form">
                                 <div class="form-group">
-                                   <div style="float: left; display:inline-block;"> <h5 style="font-size: 24px; color:#0c7ddf">Upload Files</h5></div>
-                                  <div class="spinner-border text-success" style="float: right;display:inline-block"></div> 
-                                    <select class="form-select col-md-12" id="collection-drop" name="coll"> 
+                                    <div class="row">
+                                        <div class="md-3">
+                                            <h6 style="font-size: 24px; color:#0c7ddf">Upload Files
+                                                <div class="spinner-border text-success" id="fileloader"
+                                                    style="font-weight: 100!important;"></div>
+                                            </h6>
+                                        </div>
+                                    </div>
+                                    <select class="form-select col-md-12" id="collection-drop" name="coll">
                                         {{#each service}}
                                         <option value="{{this._id}}">{{this.keyword_collection}}</option>
                                         {{/each}}
@@ -267,18 +273,8 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-8">
-                                       <div class="custom-file">
-                                            {{!-- <input type="file" class="custom-file-input" name="myfile"
-                                                id="keyword-file">
-                                            <label class="custom-file-label" for="customFile"
-                                                style="font-size:16px;">Choose file</label> --}}
-                                            <input type="file" name="myfile" value="fileupload" id="keyword-file"
-                                                style="border: 1px solid #efefef;
-                                                padding: 5px;"><label for="fileupload"
-                                                style="padding: 2% 10%;
-                                                background-color: #d9d9d9;
-                                                margin-left: 8%;">Browse</label>
-                                        </div>
+                                        <input type="file" name="myfile" value="fileupload" id="keyword-file" style="border: 1px solid #efefef;
+                                                padding: 4px;width:100%;">
                                     </div>
                                     <div class="col-md-4">
                                         <button type="submit" id="add-key" class="btn btn-info"
@@ -357,17 +353,21 @@
                                             ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
                                             <input type="text" name="cat" value="{{this.keyword_name}}"
                                                 id="{{this._id}}i" style="display: none;">
-                                            <button value="{{this.keyword_name}}" style="all: unset; text-align: center;margin-left:18%;" id="{{this.id}}b">
+                                            <button value="{{this.keyword_name}}"
+                                                style="all: unset; text-align: center;margin-left:18%;"
+                                                id="{{this.id}}b">
                                                 <i id="add-b" class="fas fa-download add-b" onclick="pre(event)"
                                                     style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
                                                 {{this.keyword_name}}<i id="{{this._id}}-a"
                                                     class="fas fa-download add-a" onclick="pre(event)"
                                                     style="padding: 13px 30px 13px 30px; font-size:17px;"
                                                     ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
-                                                    {{!-- <br/> --}}
-                                               <i class="fas fa-pen-square" style="padding: 10px; display:none;curser:pointer;"
+                                                {{!-- <br /> --}}
+                                                <i class="fas fa-pen-square"
+                                                    style="padding: 10px; display:none;curser:pointer;"
                                                     id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
-                                                <i class="fas fa-trash" style="padding: 10px; display:none;curser:pointer"
+                                                <i class="fas fa-trash"
+                                                    style="padding: 10px; display:none;curser:pointer"
                                                     onclick="delKey(event,this)" id="d{{this._id}}-"></i>
                                             </button>
                                         </div>
@@ -384,7 +384,8 @@
                                     margin-bottom: 4%;">Combine Keywords</h3>
                                         <div class="row" style="float: center;">
                                             <p style="font-size: 12px;
-                                             text-align: center;">Please select & drag keywords from the keyword list & place below</p>
+                                             text-align: center;">Please select & drag keywords from the keyword list &
+                                                place below</p>
                                             <div class="col-md-2"></div>
                                             <div class="col-md-1"
                                                 style="background-color: #fda38b;height:15px;width:15px;">
@@ -411,53 +412,56 @@
                                     color: #000;
                                     text-align: center;
                                     margin-bottom: 7%;">
-                                       List of combined keywords
+                                        List of combined keywords
                                     </p>
                                     <div class="list" id="edited">
-                                            <div class="list" id="dis">
-                                                {{#each editKeyword}}
-                                                   <div id="{{this._id}}-" class="example-draggable edited" draggable="true"
-                                            ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
-                                            <input type="text" name="cat" value="{{this.keyword_name}}"
-                                                id="{{this._id}}i" style="display: none;">
-                                            <button value="{{this.keyword_name}}" style="all: unset; text-align: center;margin-left:18%;" id="{{this.id}}b">
-                                                <i id="add-b" onclick="pre(event)" class="fas fa-download add-b"
-                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
-                                                {{this.keyword_name}}<i id="{{this._id}}-a"
-                                                    class="fas fa-download add-a" onclick="pre(event)"
-                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"
-                                                    ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
-                                                    {{!-- <br/> --}}
-                                               <i class="fas fa-pen-square"  style="padding: 10px; display:none;curser:pointer;"
-                                                    id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
-                                                <i class="fas fa-trash"  style="padding: 10px; display:none;curser:pointer"
-                                                    onclick="delKey(event,this)" id="d{{this._id}}-"></i>
-                                            </button>
-                                        </div>
-                                                <br>
-                                                {{/each}}
+                                        <div class="list" id="dis">
+                                            {{#each editKeyword}}
+                                            <div id="{{this._id}}-" class="example-draggable edited" draggable="true"
+                                                ondragstart="onDragStart(event);" data-value="{{this.keyword_name}}">
+                                                <input type="text" name="cat" value="{{this.keyword_name}}"
+                                                    id="{{this._id}}i" style="display: none;">
+                                                <button value="{{this.keyword_name}}"
+                                                    style="all: unset; text-align: center;margin-left:18%;"
+                                                    id="{{this.id}}b">
+                                                    <i id="add-b" onclick="pre(event)" class="fas fa-download add-b"
+                                                        style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
+                                                    {{this.keyword_name}}<i id="{{this._id}}-a"
+                                                        class="fas fa-download add-a" onclick="pre(event)"
+                                                        style="padding: 13px 30px 13px 30px; font-size:17px;"
+                                                        ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
+                                                    {{!-- <br /> --}}
+                                                    <i class="fas fa-pen-square"
+                                                        style="padding: 10px; display:none;curser:pointer;"
+                                                        id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
+                                                    <i class="fas fa-trash"
+                                                        style="padding: 10px; display:none;curser:pointer"
+                                                        onclick="delKey(event,this)" id="d{{this._id}}-"></i>
+                                                </button>
                                             </div>
+                                            <br>
+                                            {{/each}}
                                         </div>
                                     </div>
-                                    <div class="modal" tabindex="-1" role="dialog">
-                                        <div class="modal-dialog" role="document">
-                                            <div class="modal-content">
-                                                <div class="modal-header">
-                                                    <h5 class="modal-title">Modal title</h5>
-                                                    <button type="button" class="close" data-dismiss="modal"
-                                                        aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                    </button>
-                                                </div>
-                                                <div class="modal-body">
-                                                    <input type="text" name="modal-input" id="modal-input" value="">
-                                                </div>
-                                                <div class="modal-footer">
-                                                    <button type="button" class="btn btn-primary" id="modal-save">Save
-                                                        changes</button>
-                                                    <button type="button" class="btn btn-secondary" id="modal-close"
-                                                        data-dismiss="modal">Close</button>
-                                                </div>
+                                </div>
+                                <div class="modal" tabindex="-1" role="dialog">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title">Modal title</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <input type="text" name="modal-input" id="modal-input" value="">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-primary" id="modal-save">Save
+                                                    changes</button>
+                                                <button type="button" class="btn btn-secondary" id="modal-close"
+                                                    data-dismiss="modal">Close</button>
                                             </div>
                                         </div>
                                     </div>
@@ -466,4 +470,5 @@
                         </div>
                     </div>
                 </div>
+            </div>
 </section>
