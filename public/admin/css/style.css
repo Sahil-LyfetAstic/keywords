@@ -19912,70 +19912,43 @@ p{
 .fa-pen-square{
   cursor:pointer;
 }
-/* .fa-plus-circle:before {
-  content: "\f055";
-  color: #fff;
-  opacity: 0%;
-} */
-/* 
-.fa-pen:before {
-  content: "\f304";
-
-  right: 0;
-  ]background-color:#cd8888; 
-  border-radius:50%;
-  color:#000;
-  font-size:12px;
-
-}
-.fa-pen{
-  content: "\f304";
-  position: relative;
-  top:0;
-  right: 0;
-  background-color:#cd8888; 
-  border-radius:50%;
-  color:#000;
-  font-size:12px;
-} */
-
 .fa-trash:before {
   content: "\f1f8";
-  /* background-color:#e9e7a7; 
-  border-radius:50%;
-  color:#000;
-  font-size:12px; */
   cursor: pointer;
 }
 
-fas fa-trash{
+.fa-trash{
   cursor: pointer;
 }
 .fa-trash {
   content: "\f1f8";
-  /* background-color:#e9e7a7; 
-  border-radius:50%;
-  color:#000;
-  font-size:12px; */
   cursor: pointer;
 }
-
-.edit{
-      padding: 10px;
-      display: inline;
-      position: relative;
-      right: 0;
-      top: 0;
-  }
-
-
-  .fa-download:before {
+.fa-download:before {
     content: "\f019";
     font-size: 20px;
     color: #fff;
 } 
-
 .fa-download{
   padding-top: 9px;
   padding-bottom: 10px;
+}
+.edit{
+  padding: 10px;
+  display: inline;
+  position: absolute!important;
+  right: 24px!important;
+  top: 8px!important;
+}
+
+.trash{
+padding: 10px;
+display: inline;
+position: absolute!important;
+right: 0!important;
+top: 8px!important;
+}
+#fileloader{
+  float: right;
+  display:none;
 }

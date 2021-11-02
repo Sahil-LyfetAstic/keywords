@@ -33,7 +33,7 @@ $("#add-keyword-form").submit((e) => {
     $("#uploadmsg").html("file cannot be empty").css("color", "green").show();
     $("#uploadmsg").delay(1000).hide(0);
   }else{
-    $('#loading-gif').show()
+    $('#fileloader').show()
     $.ajax({
       url: "upload-keyword",
       type: "post",
@@ -42,7 +42,7 @@ $("#add-keyword-form").submit((e) => {
       contentType: false,
       success: (response) => {
         if (response === true) {
-          $('#loading-gif').hide()
+          $('#fileloader').hide()
           $("#uploadmsg").html("added succes").css("color", "green").show();
           $("#uploadmsg").delay(1000).hide(0);
           $("#upload-key").load(location.href + " #upload-key");
@@ -465,7 +465,7 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
@@ -493,7 +493,7 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
@@ -532,7 +532,7 @@ function onDrop(event) {
     '-a" ' +
     'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
     'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-    '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+    '<i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
     '<i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
     'onclick="delKey(event,this)" id="' +
     parrentId +
@@ -590,7 +590,7 @@ $("#modal-save").click((e) => {
       '-a" ' +
       'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      ' <i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
@@ -620,7 +620,7 @@ $("#modal-save").click((e) => {
       '-a" ' +
       'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      ' <i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
