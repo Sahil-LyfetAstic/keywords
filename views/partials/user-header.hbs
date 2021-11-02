@@ -1,50 +1,100 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.4.0/css/font-awesome.min.css">
 </head>
 <style>
     .form-content .form-items {
-    max-width: 80%;
-    text-align: center;
-    box-shadow: 1px -17px 47px 33px #efefef;
-    padding: 10%;
-    -webkit-border-radius: 10px;
--moz-border-radius: 10px;
--ms-border-radius: 10px;
+        max-width: 30%;
+        text-align: center;
+        box-shadow: 1px -17px 47px 33px #efefef;
+        padding: 2%;
+        -webkit-border-radius: 10px;
+        -moz-border-radius: 10px;
+        -ms-border-radius: 10px;
+    }
+
+    .form-content form {
+        margin-bottom: 0px;
+    }
+
+    .fa-check-square-o:before {
+        content: "\f046";
+        color: #50e53d;
+        font-size: 45px;
+    }
+
+    .form-holder {
+        margin-left: 0px;
+        width: initial;
+    }
+
+    .center {
+        position: absolute;
+        left: 50%;
+        top: 50%;
+        transform: translate(-50%, -50%);
+        padding: 10px;
+    }
+    .fa-warning:before, .fa-exclamation-triangle:before {
+    content: "\f071";
+    color: #db4030;
+     font-size: 45px;
 }
 </style>
 <body>
-      <div class="form-body"  style="width: fit-content;">
-        <div  class="website-logo">
+    <div class="form-body">
+        {{!-- <div class="website-logo">
             <a href="/">
-               
             </a>
-        </div>
-        <div class="row">
-            {{!-- <div class="img-holder">
-                <div class="bg"  style="background-color: antiquewhite;"></div>
-                <div class="info-holder">
-                    <img src="user/images/graphic1.svg" alt="http://localhost:3000/user/images/logo-light.svg">
-                   
+        </div> --}}
+        <div class="row center">
+            {{!-- <div class="col-md-12">
+                <div class="img-holder">
+                    <div class="bg" style="background-color: antiquewhite;"></div>
+                    <div class="info-holder">
+                        <img src="user/images/graphic1.svg" alt="http://localhost:3000/user/images/logo-light.svg">
+
+                    </div>
                 </div>
             </div> --}}
-            <div class="form-holder">
-                <div class="form-content">
-                    <div class="form-items">
-                       
-                        <div class="page-links">
-                                                <img src="user/images/graphic1.svg" alt="http://localhost:3000/user/images/logo-light.svg" style="margin-bottom: 6%;">
+            <div class="col-md-4"></div>
+            <div class="col-md-12 ">
+                <div class="form-holder ">
+                    <div class="form-content ">
+                        <div class="form-items">
 
-                           <a href="#" class="active" style="text-align: center!important;;">LOGIN</a>
+                            <div class="page-links">
+                                {{!-- <div>
+                                    <i class="fa fa-check-square-o" aria-hidden="true"></i>
+
+                                    <h2 style="font-size: 25px;color: #4cc343!important;">You are successfully logged in
+                                    </h2>
+                                </div> --}}
+
+
+                                  <div>
+                                    <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
+
+
+                                    <h2 style="font-size: 25px;color: #db4030!important;">Username or password is incorrect
+                                    </h2>
+                                </div>
+
+
+                                <img src="user/images/graphic1.svg"
+                                    alt="http://localhost:3000/user/images/logo-light.svg"
+                                    style="margin-bottom: 2%;height:400px;">
+                                <br />
+                                <a href="#" class="active" style="text-align: center!important;">LOGIN</a>
+                            </div>
+                            {{{body}}}
                         </div>
-                        {{{body}}}
-                     
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
 </body>
+
 </html>

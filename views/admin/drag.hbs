@@ -257,7 +257,8 @@
                             <br>
                             <form id="add-keyword-form">
                                 <div class="form-group">
-                                    <h5 style="font-size: 24px; color:#0c7ddf">Upload Files</h5>
+                                   <div style="float: left; display:inline-block;"> <h5 style="font-size: 24px; color:#0c7ddf">Upload Files</h5></div>
+                                  <div class="spinner-border text-success" style="float: right;display:inline-block"></div> 
                                     <select class="form-select col-md-12" id="collection-drop" name="coll"> 
                                         {{#each service}}
                                         <option value="{{this._id}}">{{this.keyword_collection}}</option>
@@ -266,11 +267,17 @@
                                 </div>
                                 <div class="form-row">
                                     <div class="col-md-8">
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" name="myfile"
+                                       <div class="custom-file">
+                                            {{!-- <input type="file" class="custom-file-input" name="myfile"
                                                 id="keyword-file">
                                             <label class="custom-file-label" for="customFile"
-                                                style="font-size:16px;">Choose file</label>
+                                                style="font-size:16px;">Choose file</label> --}}
+                                            <input type="file" name="myfile" value="fileupload" id="keyword-file"
+                                                style="border: 1px solid #efefef;
+                                                padding: 5px;"><label for="fileupload"
+                                                style="padding: 2% 10%;
+                                                background-color: #d9d9d9;
+                                                margin-left: 8%;">Browse</label>
                                         </div>
                                     </div>
                                     <div class="col-md-4">
