@@ -343,7 +343,7 @@
                                         <option value="{{this._id}}">{{this.keyword_collection}}</option>
                                         {{/each}}
                                     </select>
-                                    <div class="list" id="dis" style="margin-bottom: 6%;">
+                                    <div class="list" id="upload-key" style="margin-bottom: 6%;">
 
                                         {{#each keywords}}
 
@@ -352,10 +352,10 @@
                                             <input type="text" name="cat" value="{{this.keyword_name}}"
                                                 id="{{this._id}}i" style="display: none;">
                                             <button value="{{this.keyword_name}}" style="all: unset; text-align: center;margin-left:18%;" id="{{this.id}}b">
-                                                <i id="add-b" class="fas fa-download add-b"
+                                                <i id="add-b" class="fas fa-download add-b" onclick="pre(event)"
                                                     style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
                                                 {{this.keyword_name}}<i id="{{this._id}}-a"
-                                                    class="fas fa-download add-a"
+                                                    class="fas fa-download add-a" onclick="pre(event)"
                                                     style="padding: 13px 30px 13px 30px; font-size:17px;"
                                                     ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
                                                     {{!-- <br/> --}}
@@ -415,16 +415,16 @@
                                             <input type="text" name="cat" value="{{this.keyword_name}}"
                                                 id="{{this._id}}i" style="display: none;">
                                             <button value="{{this.keyword_name}}" style="all: unset; text-align: center;margin-left:18%;" id="{{this.id}}b">
-                                                <i id="add-b" class="fas fa-download add-b"
+                                                <i id="add-b" onclick="pre(event)" class="fas fa-download add-b"
                                                     style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
                                                 {{this.keyword_name}}<i id="{{this._id}}-a"
-                                                    class="fas fa-download add-a"
+                                                    class="fas fa-download add-a" onclick="pre(event)"
                                                     style="padding: 13px 30px 13px 30px; font-size:17px;"
                                                     ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
                                                     {{!-- <br/> --}}
-                                               <i class="fas fa-pen-square" style="padding: 10px; display:none;curser:pointer;"
+                                               <i class="fas fa-pen-square"  style="padding: 10px; display:none;curser:pointer;"
                                                     id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
-                                                <i class="fas fa-trash" style="padding: 10px; display:none;curser:pointer"
+                                                <i class="fas fa-trash"  style="padding: 10px; display:none;curser:pointer"
                                                     onclick="delKey(event,this)" id="d{{this._id}}-"></i>
                                             </button>
                                         </div>

@@ -38,14 +38,14 @@ $("#add-keyword-form").submit((e) => {
       if (response === true) {
         $("#uploadmsg").html("added succes").css("color", "green").show();
         $("#uploadmsg").delay(1000).hide(0);
-        $("#add-keyword-form").load(location.href + " #add-keyword-form");
+        $("#upload-key").load(location.href + " #upload-key");
       } else {
         $("#uploadmsg")
           .html("file format not support")
           .css("color", "red")
           .show();
         $("#uploadmsg").delay(1000).hide(0);
-        $("#add-keyword-form").load(location.href + " #add-keyword-form");
+        $("#upload-key").load(location.href + " #upload-key");
       }
     },
   });
@@ -449,13 +449,13 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+        'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
         '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
@@ -477,13 +477,13 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+        'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
         '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
@@ -503,63 +503,40 @@ function onDrop(event) {
     let secondId = id.split("-")[0].replace(/-/g, "");
     const secondValue = document.getElementById(secondId + "i").value;
     const keyword = secondValue + " " + firstValue.trim();
+   
+
+    let html =
+    '<input type="text" name="duplicate" value="' +
+    keyword +
+    '" id="' +
+    parrentId +
+    'i" style="display: none;">' +
+    '<button value="' +
+    keyword +
+    '" style="all: unset;" id="' +
+    parrentId +
+    'b">' +
+    '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+    "" +
+    keyword +
+    '<i id="' +
+    parrentId +
+    '-a" ' +
+    'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+    'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
+    '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+    '<i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
+    'onclick="delKey(event,this)" id="' +
+    parrentId +
+    'd"></i>' +
+    "</button>";
+
 
     let isKey = sorting(keyword);
     if (isKey === true) {
-      let html =
-        '<input type="text" name="duplicate" value="' +
-        keyword +
-        '" id="' +
-        parrentId +
-        'i" style="display: none;">' +
-        '<button value="' +
-        keyword +
-        '" style="all: unset;" id="' +
-        parrentId +
-        'b">' +
-        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
-        "" +
-        keyword +
-        '<i id="' +
-        parrentId +
-        '-a" ' +
-        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
-        'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
-        '<i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
-        'onclick="delKey(event,this)" id="' +
-        parrentId +
-        'd"></i>' +
-        "</button>";
-
       document.getElementById(parrentId).style.backgroundColor = "#f79a71";
       document.getElementById(parrentId).innerHTML = html;
     } else {
-      let html =
-        '<input type="text" name="cat" value="' +
-        keyword +
-        '" id="' +
-        parrentId +
-        'i" style="display: none;">' +
-        '<button value="' +
-        keyword +
-        '" style="all: unset;" id="' +
-        parrentId +
-        'b">' +
-        '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
-        "" +
-        keyword +
-        '<i id="' +
-        parrentId +
-        '-a" ' +
-        'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
-        'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        'i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
-        '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
-        'onclick="delKey(event,this)" id="' +
-        parrentId +
-        'd"></i>' +
-        "</button>";
 
       document.getElementById(parrentId).style.backgroundColor =
         "rgb(223 227 226 / 77%)";
@@ -594,13 +571,13 @@ $("#modal-save").click((e) => {
       '" style="all: unset;" id="' +
       parrentId +
       'b">' +
-      '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+      '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
       "" +
       editedData +
       '<i id="' +
       parrentId +
       '-a" ' +
-      'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+      'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
@@ -624,13 +601,13 @@ $("#modal-save").click((e) => {
       '" style="all: unset;" id="' +
       parrentId +
       'b">' +
-      '<i id="add-b" class="fas fa-download add-b" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+      '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
       "" +
       editedData +
       '<i id="' +
       parrentId +
       '-a" ' +
-      'class="fas fa-download add-a" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+      'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
       ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
@@ -708,4 +685,9 @@ function sorting(keyword) {
   });
 
   return key;
+}
+
+
+function pre(event){
+  event.preventDefault()
 }

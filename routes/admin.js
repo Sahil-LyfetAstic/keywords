@@ -189,9 +189,12 @@ router.post("/submit-keyword", (req, res) => {
 router.get("/drag", (req, res) => {
   let coll = "Real_Estate";
   adminHelper.getAprovedColl().then((service) => {
-    adminHelper.getCsv(coll).then((keywords) => {
-      adminHelper.getEditedKeyword().then((editKeyword) => {
-        adminHelper.docCounter(collection.KEYWORD_COLLECTION).then((count) => {
+    adminHelper.getCsv(coll)
+    .then((keywords) => {
+      adminHelper.getEditedKeyword()
+      .then((editKeyword) => {
+        adminHelper.docCounter(collection.KEYWORD_COLLECTION)
+        .then((count) => {
           res.render("admin/drag", {
             admin: true,
             service,

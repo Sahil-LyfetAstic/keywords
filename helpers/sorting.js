@@ -4,6 +4,7 @@ const db = require("../config/connection");
 
 module.exports = {
   arrSorting: (arr, coll) => {
+    console.log('arr')
     return new Promise(async (resolve, reject) => {
       await db
         .get()
