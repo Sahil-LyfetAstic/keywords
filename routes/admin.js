@@ -65,11 +65,23 @@ router.post("/login", loginAccess, (req, res) => {
 });
 
 router.get("/home", verifyLogin, (req, res) => {
+  let coll = "Real_Estate";
   adminHelper.getAprovedColl().then((service) => {
-    let coll = "Real_Estate";
-
-    adminHelper.getCsv(coll).then((keywords) => {
-      res.render("admin/home", { admin: true, service, keywords });
+    adminHelper.getCsv(coll)
+    .then((keywords) => {
+      adminHelper.getEditedKeyword()
+      .then((editKeyword) => {
+        adminHelper.docCounter(collection.KEYWORD_COLLECTION)
+        .then((count) => {
+          res.render("admin/drag", {
+            admin: true,
+            service,
+            keywords,
+            editKeyword,
+            count,
+          });
+        });
+      });
     });
   });
 });
@@ -186,27 +198,27 @@ router.post("/submit-keyword", (req, res) => {
   }
 });
 
-router.get("/drag", (req, res) => {
-  let coll = "Real_Estate";
-  adminHelper.getAprovedColl().then((service) => {
-    adminHelper.getCsv(coll)
-    .then((keywords) => {
-      adminHelper.getEditedKeyword()
-      .then((editKeyword) => {
-        adminHelper.docCounter(collection.KEYWORD_COLLECTION)
-        .then((count) => {
-          res.render("admin/drag", {
-            admin: true,
-            service,
-            keywords,
-            editKeyword,
-            count,
-          });
-        });
-      });
-    });
-  });
-});
+// router.get("/drag", (req, res) => {
+//   let coll = "Real_Estate";
+//   adminHelper.getAprovedColl().then((service) => {
+//     adminHelper.getCsv(coll)
+//     .then((keywords) => {
+//       adminHelper.getEditedKeyword()
+//       .then((editKeyword) => {
+//         adminHelper.docCounter(collection.KEYWORD_COLLECTION)
+//         .then((count) => {
+//           res.render("admin/drag", {
+//             admin: true,
+//             service,
+//             keywords,
+//             editKeyword,
+//             count,
+//           });
+//         });
+//       });
+//     });
+//   });
+// });
 
 router.post("/flush-keyword", (req, res) => {
   console.log(req.body);
