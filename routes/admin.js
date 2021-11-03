@@ -153,14 +153,21 @@ router.post("/upload-keyword", upload.single("myfile"), (req, res) => {
         keywordArray.push(data);
       }
 
-      adminHelper.findColl(keywordId).then((key) => {
-        adminHelper
-          .addCsv(key.keyword_collection, keywordArray)
-          .then((status) => {
-            fs.unlinkSync(req.file.path);
-            res.send(status);
-          });
-      });
+      // adminHelper.findColl(keywordId).then((key) => {
+      //   adminHelper
+      //     .addCsv(key.keyword_collection, keywordArray)
+      //     .then((status) => {
+      //       fs.unlinkSync(req.file.path);
+      //       res.send(status);
+      //     });
+      // });
+
+      adminHelper.insertBulk(keywordArray).then((stat)=>{
+        fs.unlinkSync(req.file.path);
+        res.send(stat);
+      })
+
+      
     });
   } else {
     fs.unlink(req.file.path, function (err) {

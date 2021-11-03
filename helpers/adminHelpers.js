@@ -209,4 +209,16 @@ module.exports = {
         });
     });
   },
+  insertBulk:(data)=>{
+    return new Promise(async(resolve,reject)=>{
+      await db
+      .get()
+      .collection(collection.KEYWORD_COLLECTION)
+      .insertMany(data)
+      .then((data) => {
+        if (data) resolve(true);
+        else resolve(false);
+      });
+    })
+  }
 };
