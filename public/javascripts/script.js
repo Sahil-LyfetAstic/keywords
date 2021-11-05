@@ -13,13 +13,22 @@ $("#admin-login").submit((e) => {
       },
       success: (response) => {
         if (response.user === false) {
-          alert("user not found");
+          $('#login-err-msg').html("user not found")
+          $("#login-err-div").show();
+          $("#login-err-div").delay(1000).hide(0);
+          $("#form-body").load(location.href + " #form-body");
         } else if (response.password === false) {
-          alert("incorrect password");
+          $('#login-err-msg').html("Incorrect Password")
+          $("#login-err-div").show();
+          $("#login-err-div").delay(1000).hide(0);
+          $("#form-body").load(location.href + " #form-body");
         } else if (response.login === true) {
           window.location.href = "home";
         } else if (response.oneUserActive === true) {
-          alert("one user is working");
+          $('#login-err-msg').html("one user is working")
+          $("#login-err-div").show();
+          $("#login-err-div").delay(1000).hide(0);
+          $("#form-body").load(location.href + " #form-body");
         }
       },
     });
@@ -28,27 +37,34 @@ $("#admin-login").submit((e) => {
 
 $("#add-keyword-form").submit((e) => {
   e.preventDefault();
-  $.ajax({
-    url: "upload-keyword",
-    type: "post",
-    data: new FormData(document.getElementById("add-keyword-form")),
-    processData: false,
-    contentType: false,
-    success: (response) => {
-      if (response === true) {
-        $("#uploadmsg").html("added succes").css("color", "green").show();
-        $("#uploadmsg").delay(1000).hide(0);
-        $("#upload-key").load(location.href + " #upload-key");
-      } else {
-        $("#uploadmsg")
-          .html("file format not support")
-          .css("color", "red")
-          .show();
-        $("#uploadmsg").delay(1000).hide(0);
-        $("#upload-key").load(location.href + " #upload-key");
-      }
-    },
-  });
+  let file = document.getElementById('keyword-file')
+  if(file.files.length === 0){
+    $("#uploadmsg").html("file cannot be empty").css("color", "green").show();
+    $("#uploadmsg").delay(1000).hide(0);
+  }else{
+    $('#loading-gif').show()
+    $.ajax({
+      url: "upload-keyword",
+      type: "post",
+      data: new FormData(document.getElementById("add-keyword-form")),
+      processData: false,
+      contentType: false,
+      success: (response) => {
+        if (response === true) {
+          $('#loading-gif').hide()
+          $("#uploadmsg").html("added succes").css("color", "green").show();
+          $("#uploadmsg").delay(1000).hide(0);
+          $("#upload-key").load(location.href + " #upload-key");
+        } else {
+          $('#loading-gif').hide()
+          $("#uploadmsg").html("file format not support").css("color", "red").show();
+          $("#uploadmsg").delay(1000).hide(0);
+          $("#upload-key").load(location.href + " #upload-key");
+        }
+      },
+    });
+  }
+
 
   // return false;
 });
@@ -458,7 +474,7 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
@@ -486,7 +502,7 @@ function onDrop(event) {
         '-a" ' +
         'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
         '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
@@ -525,7 +541,7 @@ function onDrop(event) {
     '-a" ' +
     'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
     'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-    '<i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+    '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
     '<i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
     'onclick="delKey(event,this)" id="' +
     parrentId +
@@ -543,10 +559,6 @@ function onDrop(event) {
         "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
-  }else if(dropzone.className === 'fas fa-pen-square' ){
-    event.preventDefault()
-  }else if(dropzone.className === 'fas fa-trash'){
-    event.preventDefault()
   }
   else{
     event.preventDefault()
@@ -587,7 +599,7 @@ $("#modal-save").click((e) => {
       '-a" ' +
       'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
@@ -617,7 +629,7 @@ $("#modal-save").click((e) => {
       '-a" ' +
       'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 0px 0px 0px 500px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
       '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
@@ -658,9 +670,11 @@ $("#relation-form").submit((e) => {
             .html("added succes")
             .css("color", "green")
             .show();
-          $("#afteruploadmsg").delay(1000).hide(0);
+          // $("#afteruploadmsg").delay(1000).hide(0);
+          alert('successfully submitted')
           $("#list2").empty();
           $("#edited").load(location.href + " #edited");
+          $("#key-count").load(location.href + " #key-count");
         }
       },
     });
