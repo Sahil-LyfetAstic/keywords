@@ -41,6 +41,16 @@
     color: #db4030;
      font-size: 45px;
 }
+@media screen and (max-width: 600px) {
+  .login {
+    max-width: 100%!important;
+    background-color: #efefef;
+  }
+  .img{
+      height: 20px;
+      width: 100%;
+  }
+}
 </style>
 <body>
     <div class="form-body">
@@ -61,8 +71,8 @@
             <div class="col-md-4"></div>
             <div class="col-md-12 ">
                 <div class="form-holder ">
-                    <div class="form-content ">
-                        <div class="form-items">
+                    <div class="form-content login">
+                        <div class="form-items login">
 
                             <div class="page-links">
                                 {{!-- <div>
@@ -82,7 +92,7 @@
                                 </div>
 
 
-                                <img src="user/images/graphic1.svg"
+                                <img    class="img" src="user/images/graphic1.svg"
                                     alt="http://localhost:3000/user/images/logo-light.svg"
                                     style="margin-bottom: 2%;height:400px;">
                                 <br />
