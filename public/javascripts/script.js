@@ -466,16 +466,16 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+        'class="fas fa-download add-a" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
-        '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
+        '<i class="fas fa-pen-square edit" style="padding: 13px 30px 13px 152px; cursor: pointer;font-size:17px;" onclick="editKeyword(event,this)"></i>' +
+        '  <i class="fas fa-trash trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
         'd"></i>' +
@@ -494,23 +494,23 @@ function onDrop(event) {
         '" style="all: unset;" id="' +
         parrentId +
         'b">' +
-        '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+        '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"></i>' +
         "" +
         keyword +
         '<i id="' +
         parrentId +
         '-a" ' +
-        'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+        'class="fas fa-download add-a" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"' +
         'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-        '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
-        '  <i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
+        '<i class="fas fa-pen-square edit"  style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+        '  <i class="fas fa-trash trash" style="padding: 10px;cursor: pointer;"' +
         'onclick="delKey(event,this)" id="' +
         parrentId +
         'd"></i>' +
         "</button>";
 
       document.getElementById(parrentId).style.backgroundColor =
-        "rgb(223 227 226 / 77%)";
+        "rgb(239 239 239 / 56%);";
       document.getElementById(parrentId).innerHTML = html;
     }
   } else if (dropzone.className === "fas fa-download add-b") {
@@ -533,16 +533,16 @@ function onDrop(event) {
     '" style="all: unset;" id="' +
     parrentId +
     'b">' +
-    '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+    '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"></i>' +
     "" +
     keyword +
     '<i id="' +
     parrentId +
     '-a" ' +
-    'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+    'class="fas fa-download add-a" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"' +
     'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-    '<i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
-    '<i class="fas fa-trash" style="padding: 10px;cursor: pointer;"' +
+    '<i class="fas fa-pen-square edit" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+    '<i class="fas fa-trash trash" style="padding: 10px;cursor: pointer;"' +
     'onclick="delKey(event,this)" id="' +
     parrentId +
     'd"></i>' +
@@ -591,16 +591,16 @@ $("#modal-save").click((e) => {
       '" style="all: unset;" id="' +
       parrentId +
       'b">' +
-      '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+      '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"></i>' +
       "" +
       editedData +
       '<i id="' +
       parrentId +
       '-a" ' +
-      'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+      'class="fas fa-download add-a" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
+      ' <i class="fas fa-pen-square edit" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      '<i class="fas fa-trash trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
@@ -621,16 +621,16 @@ $("#modal-save").click((e) => {
       '" style="all: unset;" id="' +
       parrentId +
       'b">' +
-      '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"></i>' +
+      '<i id="add-b" class="fas fa-download add-b" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"></i>' +
       "" +
       editedData +
       '<i id="' +
       parrentId +
       '-a" ' +
-      'class="fas fa-download add-a" onclick="pre(event)" style="padding: 13px 30px 13px 30px; font-size:17px;"' +
+      'class="fas fa-download add-a" onclick="pre(event)" style="padding: 10px 30px 0px 30px; font-size:17px;"' +
       'ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>' +
-      ' <i class="fas fa-pen-square" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
-      '<i class="fas fa-trash" style="padding: 10px;cursor:pointer"' +
+      ' <i class="fas fa-pen-square edit" style="padding: 13px 30px 13px 152px; font-size:17px;cursor: pointer;" onclick="editKeyword(event,this)"></i>' +
+      '<i class="fas fa-trash trash" style="padding: 10px;cursor:pointer"' +
       'onclick="delKey(event,this)" id="' +
       parrentId +
       'd"></i>' +
