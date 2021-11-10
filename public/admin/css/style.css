@@ -19837,7 +19837,7 @@ html.ie11 .bs-searchbox .form-control {
 }
 
 .example-dropzone {
-  background-color: #6DB65B;
+  background-color: none!important;
   flex-basis: 100%;
   flex-grow: 1;
   padding: 10px;
@@ -19944,8 +19944,6 @@ p{
   right:0px!important;
   top:0px!important;
 }
-
-
 
 #fileloader{
   float: right;

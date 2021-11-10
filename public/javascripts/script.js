@@ -555,8 +555,7 @@ function onDrop(event) {
       document.getElementById(parrentId).innerHTML = html;
     } else {
 
-      document.getElementById(parrentId).style.backgroundColor =
-        "rgb(223 227 226 / 77%)";
+      // document.getElementById(parrentId).style.backgroundColor = "rgb(223 227 226 / 77%)";
       document.getElementById(parrentId).innerHTML = html;
     }
   }
