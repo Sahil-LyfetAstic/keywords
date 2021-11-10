@@ -19837,7 +19837,7 @@ html.ie11 .bs-searchbox .form-control {
 }
 
 .example-dropzone {
-  background-color: #6DB65B;
+  background-color: none!important;
   flex-basis: 100%;
   flex-grow: 1;
   padding: 10px;
@@ -19927,28 +19927,80 @@ p{
 .fa-download:before {
     content: "\f019";
     font-size: 20px;
-    color: #fff;
-} 
+    color: transparent!important; 
+  } 
 .fa-download{
   padding-top: 9px;
   padding-bottom: 10px;
 }
 .edit{
-  padding: 10px;
-  display: inline;
-  position: absolute!important;
-  right: 24px!important;
-  top: 8px!important;
+  padding: 0px 0px 0px 400px!important;
+  right:0px!important;
+  top:0px!important;
 }
 
 .trash{
-padding: 10px;
-display: inline;
-position: absolute!important;
-right: 0!important;
-top: 8px!important;
+  padding: 0px 0px 0px 15px!important;
+  right:0px!important;
+  top:0px!important;
 }
+
 #fileloader{
   float: right;
   display:none;
+}
+/* Modal align Vertically and horizontally center */  
+/* Styling modal */
+.modal:before {
+    content: '';
+    display: inline-block;
+    /* height: 100%; */
+    vertical-align: middle;
+}
+  
+.modal-dialog {
+    /* display: inline-flex; */
+    vertical-align: middle;
+}
+.modal .modal-content {
+    padding: 20px 20px 20px 20px;
+    -webkit-animation-name: modal-animation;
+    -webkit-animation-duration: 0.5s;
+    animation-name: modal-animation;
+    animation-duration: 0.5s;
+}
+@media (min-width: 576px)
+{
+.modal-dialog {
+    max-width: 700px !important;
+    margin: 27.75rem auto !important;
+}
+}
+@-webkit-keyframes modal-animation {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+@keyframes modal-animation {
+    from {
+        top: -100px;
+        opacity: 0;
+    }
+    to {
+        top: 0px;
+        opacity: 1;
+    }
+}
+
+.alert{
+position: absolute;
+left: 50%;
+top: 50%;
+margin-left: -width;
+margin-top: -height;
 }

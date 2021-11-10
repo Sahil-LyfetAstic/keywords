@@ -358,19 +358,19 @@
                                             <input type="text" name="cat" value="{{this.keyword_name}}"
                                                 id="{{this._id}}i" style="display: none;">
                                             <button value="{{this.keyword_name}}"
-                                                style="all: unset; text-align: center;margin-left:18%;"
+                                                style="all: unset; padding:0% 0% 0% 3%!important;"
                                                 id="{{this.id}}b">
                                                 <i id="add-b" class="fas fa-download add-b" onclick="pre(event)"
-                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
+                                                    style="padding: 10px 30px 0px 30px; font-size:17px;"></i>
                                                 {{this.keyword_name}}<i id="{{this._id}}-a"
                                                     class="fas fa-download add-a" onclick="pre(event)"
-                                                    style="padding: 13px 30px 13px 30px; font-size:17px;"
+                                                    style="padding: 10px 30px 0px 30px; font-size:17px;"
                                                     ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
-                                                {{!-- <br /> --}}
-                                                <i class="fas fa-pen-square"
+                                              
+                                            <i class="fas fa-pen-square edit"
                                                     style="padding: 10px; display:none;curser:pointer;"
                                                     id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
-                                                <i class="fas fa-trash"
+                                                <i class="fas fa-trash trash"
                                                     style="padding: 10px; display:none;curser:pointer"
                                                     onclick="delKey(event,this)" id="d{{this._id}}-"></i>
                                             </button>
@@ -399,7 +399,7 @@
                                             "> Shows duplication | Duplicate entries are not allowed </div>
                                         </div>
                                         <form action="relation-form" id="relation-form">
-                                            <div class="list list2" id="list2" ondragover="onDragOver(event);"
+                                            <div class="list list2" id="list2" ondragover="onDragOver(event);" style="padding: 2%;"
                                                 ondrop="onDrop(event);">
                                             </div>
                                             <button id="relation-submit"
@@ -426,16 +426,17 @@
                                                 <input type="text" name="cat" value="{{this.keyword_name}}"
                                                     id="{{this._id}}i" style="display: none;">
                                                 <button value="{{this.keyword_name}}"
-                                                    style="all: unset; text-align: center;margin-left:18%;"
+                                                    style="all: unset;padding:0% 0% 0% 3%;"
                                                     id="{{this.id}}b">
                                                     <i id="add-b" onclick="pre(event)" class="fas fa-download add-b"
-                                                        style="padding: 13px 30px 13px 30px; font-size:17px;"></i>
-                                                    {{this.keyword_name}}<i id="{{this._id}}-a"
+                                                        style="padding: 10px 30px 0px 30px; font-size:17px;"></i>
+                                                        {{this.keyword_name}} 
+                                                        <i id="{{this._id}}-a"
                                                         class="fas fa-download add-a" onclick="pre(event)"
-                                                        style="padding: 13px 30px 13px 30px; font-size:17px;"
+                                                        style="padding: 10px 30px 0px 30px; font-size:17px;"
                                                         ondragover="onDragOver(event);" ondrop="onDrop(event);"></i>
                                                     {{!-- <br /> --}}
-                                                    <i class="fas fa-pen-square"
+                                                    <i class="fas fa-pen-square edit"
                                                         style="padding: 10px; display:none;curser:pointer;"
                                                         id="e{{this._id}}-" onclick="editKeyword(event,this)"></i>
                                                     <i class="fas fa-trash"
@@ -452,7 +453,7 @@
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
                                             <div class="modal-header">
-                                                <h5 class="modal-title">Modal title</h5>
+                                                <h5 class="modal-title">Edit Keywords</h5>
                                                 <button type="button" class="close" data-dismiss="modal"
                                                     aria-label="Close">
                                                     <span aria-hidden="true">&times;</span>
